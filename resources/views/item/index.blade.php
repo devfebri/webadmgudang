@@ -31,6 +31,7 @@
                                     <th>Jenis</th>
                                     <th>Owner</th>
                                     <th>Suplier</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -137,12 +138,12 @@
                 },
 
                 {
-                    data: 'nama_item',
-                    name: 'nama_item'
+                    data: 'nama',
+                    name: 'nama'
                 },
                 {
-                    data: 'sarial_number',
-                    name: 'sarial_number'
+                    data: 'serial_number',
+                    name: 'serial_number'
                 },
                 {
                     data: 'type',
@@ -152,10 +153,7 @@
                     data: 'jenis',
                     name: 'jenis'
                 },
-                // {
-                //     data: 'status',
-                //     name: 'status'
-                // },
+
                 {
                     data: 'owner',
                     name: 'owner'
@@ -163,6 +161,10 @@
                 {
                     data: 'supplier',
                     name: 'supplier'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
                 },
                 {
                     data: 'action',

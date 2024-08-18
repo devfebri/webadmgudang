@@ -9,14 +9,13 @@ class ItemController extends Controller
 {
     public function index (Request $request){
         $data = Item::all();
+        // dd($data);
         if ($request->ajax()) {
-            return datatbles()->of($data)
+            return datatables()->of($data)
                 ->addColumn('action', function ($f) {
                     $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">1</div>';
-
                     return $button;
                 })
-
                 ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);

@@ -2,53 +2,7 @@
 <html>
 
 <head>
-    <!-- ...JdHH""""""""""MHHgJ...
-                                .-W9"!                      ?""Mg..
-                            .JT"`                                .THa,
-                         .."!                                        ?Ha.
-                       .#^                                             .Wm.
-                     .M"                                                 (MJ.
-                   .M"                                                     WMMNg..
-                .-@'   .MMMN,                                          ..(; TMMMM"
-            ..gNJJZ^ .M8rrvrdM,               dMMNNgJ,                7T"=   dM[
-        ..gMMMMMMNgggM8rrrrrrrdN.                 `!!                         X,     `   `   `   `
-         ?MMMMMMMMNgMSrrrrrrrrrd@                                             .N
-    `       ?MMMMMB0rrrrrrrrrwq#!    `   `                `  `  `  `           d]
-       `  .+MSrrrrrrrrrrrwggg#^             `     ..                  `   JMN. .N
-         JM0rrrrrrrrrrrAM"`                      (MMN,                    dMM}  d{
-       .MBrrrrrrrrrrrrwM^                        MMMM]               ......T"  .db
-      .MSrrrrrrrrrrrrrdF                         ,HM9`            .dMF     ?4,   ?m.
-     .MSrrrrrrrrrrrrrrM%           `   `                        .MMMM]       ,N.  .W,  `  `  `  `
-     MBrrrrrrrrrrrrrrrM]                                       .MMMMMM,       .b    Up
-    .#rrrrrrrvwrrrrrrrwM,                                      (MMMMMMMMNNNNMMMM     Wc
-   .MSrrrrrrwM#TNmrrrrrdM,                `  `          `  `   ,MMMMMMMMMMMMMMMF    ..NJdY"""""""7'
-   .#rrrrrrwMFM  ?NgvrrrrMm.     ......-JJ+++&++JJ(......       (HMMMMMMMMMMMM"  7!   M{
-   d@rrrrrrdN+h,   (NsrrrrdN/7!`                          ??~.     ?"""W"""=`         M:
-   dKrrrrrwM??J\     WmrrrrwMp                                         ?          `~?dB"YG+...
-   MSrrrrrdF .#       ?NyrrrrdN,                   ....+77!`          .)         ...JD       ?""G..
-   MwrwkrrdF.MMN....J-..MmrrrrZM, .     .p   ...7""`       .?!       .f          .JMa.
-   MwrdSrrM]  .MMMMMMMMMMe?rrrrrT=N.dex.J#4Y"`          .J^        ..N........JkY"   7Q.
-   WmyMKrrM] .MMMMMMMMMMMMk.1rrrro.WMMNgMMMMN,.       .V!       ..dMMMMMMMMMMMMMa.  ...(S,
-    .T"WMH"`dMMMMMMMMMMMMMMN,?rrrrr,/MMMMMMMMMMMNg-..H+....(gNMMMMMMMMMMMMMMMMMMMMF.MMMN,."
-            .MMMMMMMMMMMMMMMMp.Orrrro,HMMMMMMMMMMM@jMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM>MMMMMMN.
-            .MMMMMMMMMMMMMMMMMN,1rrvrw,TMMMMMMMMBjMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM2MMMMMMMMp
-            MMMMMMMMMMMMMMMMMMMM,(rrvvzi..?WMM#QMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNMMMMMMMMMN.
-           .MMMMMMMMMMMMMMMMMMMM#t.uzzuzzzzo,7MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN.
-           MMMMMMMMMMMMMMMMMMMMMM,.Xzzzuzuzzzw,7MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMb
-          .MMMMMMMMMMMMMMMMMMMMMMN-.zuzzzzuzuzzn,TMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
-          dMMMMMMMMMMMMMMMMMMMMMMMb~.zzuzzzuzzzzzn,WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[
-         .MMM@MMMMMMMMMMMMMMMMMMMMMh_.Xzuzzzuzuzzzz+(MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM]
-         .MMMXMMMMMMMMMMMMMMMMMMMMMMN,.Ozuzzzuzzuzzzw,TMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM]
-         dMMMzMMMMMMMMMMMMMMMMMMMMMMMMe 1zzuzzzuzzuzzzl,MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
-         MMMMvMMMMMMMMMMMMMMMMMMMMMMMMMN,?uzzzuzzzzuzzzw,TMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMF
-         MMMM]MMMMMMMMMMMMMMMMMMMMMMMMMMMNJ?zzzuzuzzuzzzzi,MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM=
-        .MMMMbJMMMMMMMMMMMMMMMMMMMMMMMMMMMMMm,?7wzzzzuzzzzw.UMMMMMMMMMMMMMMMMMMMMMMMMMMMY""!
-        .MMMMM,MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNg.,?7CXzuzzuu?MMMMMMMMMMMMMMMMMMMMMMMM.
-        .MMMMMb(MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNg.,?7Xzn,MMMMMMMMMMMMMMMMMMMMMMM[
-        .MMMMMMp?MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNa,?w,TMMMMMMMMMMMMMMMMMMMMMF
-        .MMMMMMMb?MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN,?i(MMMMMMMMMMMMMMMMMMMM#
-        .MMMMMMMMN,WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMR.w,TMMMMMMMMMMMMMMMMMMM -->
-
+    {{-- febri developer --}}
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -73,6 +27,8 @@
 
     <!-- Alertify css -->
     <link href="{{ asset('template/assets/plugins/alertify/css/alertify.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ asset('template/assets/plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('template/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('template/assets/css/icons.css') }}" rel="stylesheet" type="text/css">
@@ -177,6 +133,9 @@
 
     <!-- App js -->
     <script src="{{ asset('template/assets/js/app.js') }}"></script>
+    <script src="{{ asset('template/assets/plugins/select2/select2.min.js') }}" type="text/javascript"></script>
+
+
 
     @yield('javascript')
 

@@ -21,7 +21,7 @@
                 <a href="{{ route(auth()->user()->role.'_item') }}" class="waves-effect">
 
                     <i class="mdi mdi-home"></i>
-                    <span> Item & Product </span>
+                    <span> Item </span>
                 </a>
             </li>
             <li>

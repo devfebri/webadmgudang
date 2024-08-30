@@ -25,8 +25,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Item</th>
                                     <th>Sarial Number</th>
+                                    <th>Nama Item</th>
                                     <th>Type</th>
                                     <th>Jenis</th>
                                     <th>Owner</th>
@@ -35,23 +35,6 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>200NTZTE02</td>
-                                    <td>0NT_ZTE_F670L</td>
-                                    <td>ZTEGD4ABBDA0</td>
-                                    <td></td>
-                                    <td><span class="badge badge-pill badge-success"><b><i>INSTAL</i></b></span></td>
-                                    <td><span class="badge badge-pill badge-success"><b><i>INSTAL</i></b></span></td>
-
-                                    <td>
-                                        <button class="tabledit-edit-button btn btn-sm btn-warning edit-post"  id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>
-                                        <button class="tabledit-delete-button btn btn-sm btn-danger delete" style="float: none; margin: 5px;"><span class="ti-trash"></span></button>
-                                    </td>
-
-                                </tr>
-                            </tbody> --}}
                         </table>
                     </div>
                 </div>
@@ -74,33 +57,76 @@
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
                     <div class="row">
-
-                        <div class="col-sm-6 col-lg-12">
-                            <div class="form-group">
-                                <label>Product Code</label>
-                                <input type="text" name="product_code" id="product_code" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Product Description</label>
-                                <input type="text" name="product_description" id="product_description" class="form-control" required>
-                            </div>
+                        <div class="col-sm-12 col-lg-6">
                             <div class="form-group">
                                 <label>Serial Number</label>
                                 <input type="text" name="serial_number" id="serial_number" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>SID</label>
-                                <input type="text" name="sid" id="sid" class="form-control" required>
+                                <label>Nama Item</label>
+                                <input type="text" name="nama" id="nama" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <select class="form-control select2" name="type" required>
+                                    <option value="">-pilih-</option>
+                                    <option value="ONT_HUAWEI_HG8145V5">ONT_HUAWEI_HG8145V5</option>
+                                    <option value="ONT_FIBERHOME_HG6245N">ONT_FIBERHOME_HG6245N</option>
+                                    <option value="ONT_ZTE_F670 V2.0">ONT_ZTE_F670 V2.0</option>
+                                    <option value="SetTopBoxIPTV_FIBERHOME_HG680FJ">SetTopBoxIPTV_FIBERHOME_HG680FJ</option>
+                                    <option value="SetTopBoxIPTV_FIBERHOME_HG680-P">SetTopBoxIPTV_FIBERHOME_HG680-P</option>
+                                    <option value="SetTopBox_ZTE_B860H_V5.0">SetTopBox_ZTE_B860H_V5.0</option>
+                                    <option value="ORBIT_SS_ZTE_K10_STAR_Z2"> ORBIT_SS_ZTE_K10_STAR_Z2</option>
+                                    <option value="ORBIT_SS ex ROUTER_HKM0128a">ORBIT_SS ex ROUTER_HKM0128a</option>
+                                    <option value="ONT_FIBERHOME_HG6243C">ONT_FIBERHOME_HG6243C</option>
+                                    <option value="ONT_FIBERHOME_HG6145F">ONT_FIBERHOME_HG6145F</option>
+                                    <option value="ONT_HUAWEI_HG8245A">ONT_HUAWEI_HG8245A</option>
+                                    <option value="ONT_ZTE_F609_V5.3">ONT_ZTE_F609_V5.3</option>
+                                    <option value="ONT_ZTE_F670L">ONT_ZTE_F670L</option>
+                                    <option value="SetTopBoxIPTV_ZTE_B860H_V2.1"> SetTopBoxIPTV_ZTE_B860H_V2.1</option>
+                                    <option value="SetTopBoxIPTV_ZTE_B860H"> SetTopBoxIPTV_ZTE_B860H</option>
+                                    <option value="SetTopBox_ZTE_ZX10_B866F_V1.1"> SetTopBox_ZTE_ZX10_B866F_V1.1</option>
+                                    <option value="ONT_HUAWEI_HG8245H5">ONT_HUAWEI_HG8245H5</option>
+                                    <option value="ONT_HUAWEI_HG8245H">ONT_HUAWEI_HG8245H</option>
+                                    <option value="ONT_HUAWEI_HG8245"> ONT_HUAWEI_HG8245</option>
+                                    <option value="ONT_FIBERHOME_HG6145D2">ONT_FIBERHOME_HG6145D2</option>
+                                    <option value="ONT_ZTE_F609">ONT_ZTE_F609</option>
+                                    <option value="SetTopBoxIPTV_ZTE_B760H">SetTopBoxIPTV_ZTE_B760H</option>
+                                    <option value="ONT_ZTE_F670"> ONT_ZTE_F670</option>
+                                    <option value="ONT_ZTE_F660">ONT_ZTE_F660</option>
+                                    <option value="TYPE">TYPE</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis</label>
+                                <select class="form-control" name="jenis" required>
+                                    <option value="">-pilih-</option>
+                                    <option value="ONT">ONT</option>
+                                    <option value="STB">STB</option>
+                                    <option value="STB">STB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                <label>Owner</label>
+                                <input type="text" name="owner" id="owner" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Supplier</label>
+                                <input type="text" name="supplier" id="supplier" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
-                                <select class="form-control" name="status">
-                                    <option>Select</option>
+                                <select class="form-control" name="status" required>
+                                    <option value="">-pilih-</option>
                                     <option value="Instal">Instal</option>
                                     <option value="Intech">Intech</option>
                                 </select>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -125,88 +151,135 @@
 
     <script>
         $(document).ready(function() {
-            var table = $('#data_table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route(auth()->user()->role.'_item') }}",
-            columns: [{
-                    data: null,
-                    sortable: false,
-                    render: function (data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1
-                    },
-                },
-
-                {
-                    data: 'nama',
-                    name: 'nama'
-                },
-                {
-                    data: 'serial_number',
-                    name: 'serial_number'
-                },
-                {
-                    data: 'type',
-                    name: 'type'
-                },
-                {
-                    data: 'jenis',
-                    name: 'jenis'
-                },
-
-                {
-                    data: 'owner',
-                    name: 'owner'
-                },
-                {
-                    data: 'supplier',
-                    name: 'supplier'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
-                },
-                {
-                    data: 'action',
-                    name: 'action'
+             $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            ]
-        });
+            });
+            $(".select2").select2({
+                width: '100%'
+            });
+            var table = $('#data_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route(auth()->user()->role.'_item') }}",
+                columns: [{
+                        data: null,
+                        sortable: false,
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1
+                        },
+                    },
+                    {
+                        data: 'serial_number',
+                        name: 'serial_number'
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'type',
+                        name: 'type'
+                    },
+                    {
+                        data: 'jenis',
+                        name: 'jenis'
+                    },
+                    {
+                        data: 'owner',
+                        name: 'owner'
+                    },
+                    {
+                        data: 'supplier',
+                        name: 'supplier'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
+                ]
+            });
             $('#btntambah').on('click', function() {
                 $('#tambah-edit-modal').modal('show');
             });
             if ($("#form-tambah-edit").length > 0) {
-
                 $("#form-tambah-edit").validate({
                     submitHandler: function(form) {
+                        var actionType = $('#tombol-simpan').val();
                         var simpan = $('#tombol-simpan').html('Sending..');
-
-                        var form = $("#form-tambah-edit")[0];
-                        var data = new FormData(form);
                         $.ajax({
+                            data: $('#form-tambah-edit')
+                                .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
+                            url: "{{ route(auth()->user()->role.'_itemcreate') }}", //url simpan data
                             type: "POST", //karena simpan kita pakai method POST
-                            enctype: "multipart/form-data"
-                            , url: "{{ route(auth()->user()->role.'_itemcreate') }}", //url simpan data
-                            data: data, //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
-                            // processData: false,
-                            // contentType: false,
-                            // cache: false,
-                            // timeout: 600000,
-                            success: function(data) { //jika berhasil
-                                alert('ok');
+                            dataType: 'json'
+                            , success: function(data) { //jika berhasil
+                                $('#form-tambah-edit').trigger("reset"); //form
+                                $('#tambah-edit-modal').modal('hide'); //modal hide
+                                $('#tombol-simpan').html('Simpan'); //tombol simpan
+                                var oTable = $('#data_table')
+                                    .dataTable(); //inialisasi datatable
+                                oTable.fnDraw(false);
                             }
                             , error: function(data) { //jika error tampilkan error pada console
                                 $('#tombol-simpan').html('Simpan');
                             }
                         });
-
                     }
-                })
+                });
             }
 
+            $('body').on('click', '.delete', function(id) {
+                var dataid = $(this).attr('data-id');
+                var url = "{{ route(auth()->user()->role.'_itemdelete', ':dataid') }}";
+
+                urls = url.replace(':dataid', dataid);
+                alertify.confirm('Seluruh data yang berkaitan di item ini akan ikut terhapus, apa anda yakin ?', function() {
+                    $.ajax({
+                        url: urls, //eksekusi ajax ke url ini
+                        type: 'delete'
+                        , success: function(data) { //jika sukses
+                            setTimeout(function() {
+                                var oTable = $('#datatable1').dataTable();
+                                oTable.fnDraw(false); //reset datatable
+                                $('#tombol-hapus').text('Yakin');
+                            });
+
+                        }
+                    })
+                    alertify.success('Data berhasil dihapus')
+
+                }, function() {
+                    alertify.error('Cancel')
+                });
+            });
+
+            $('body').on('click', '.edit-post', function() {
+                var data_id = $(this).data('id');
+                var url = "{{ route(auth()->user()->role.'_itemedit',':data_id') }}";
+                url = url.replace(':data_id', data_id);
+
+                $.get(url, function(data) {
+                    $('#modal-judul').html("Edit User");
+                    $('#tombol-simpan').val("edit-post");
+                    $('#tambah-edit-modal').modal('show');
+
+                    // alert(data.nama);
+                    $('#id').val(data.id);
+                    $('#username').val(data.username).attr('disabled', true);
+                    $('#name').val(data.name).attr('disabled', true);
+                    $('#role').val(data.role).change();
+                    $('#sisa_cuti').val(data.sisa_cuti);
+
+                })
+            });
         });
 
     </script>
-
 @stop
 

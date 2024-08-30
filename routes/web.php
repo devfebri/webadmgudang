@@ -29,5 +29,7 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/item',[ItemController::class,'index'])->name('item');
     Route::post('/item/create',[ItemController::class,'create'])->name('itemcreate');
+    Route::delete('/item/delete',[ItemController::class,'delete'])->name('itemdelete');
+    Route::post('/item/edit',[ItemController::class,'edit'])->name('itemedit');
 
 });

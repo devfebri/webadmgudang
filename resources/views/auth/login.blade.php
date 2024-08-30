@@ -77,11 +77,6 @@
 <body class="fixed-left">
     <!-- Begin page -->
     <div class="accountbg" id="particles-js"></div>
-
-    {{-- <marquee style="font-family:Cursive;font-size:14pt;color:#fff;margin-bottom:-25px;">
-
-           Aplikasi Sedang Maintenance!!
-            </marquee> --}}
     <div class="wrapper-page">
 
         <div class="" style="font-family:revert-layer;">
@@ -111,21 +106,17 @@
                                 <input class="form-control text-center" name="username" type="text" required="" value="{{ $login_username }}" placeholder="NIK / Nomor Telpon">
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <div class="col-12">
                                 <input class="form-control text-center" id="password" name="password" type="password" required="" value="{{ $login_password }}" placeholder="Password">
                             </div>
                         </div>
-
-
                         <div class="form-group text-center row m-t-20">
                             <div class="col-12">
                                 <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Login</button>
                                 {{-- <a href="/registrasi" class="btn btn-secondary btn-block waves-effect waves-light">Registrasi</a> --}}
                             </div>
                         </div>
-
                         <div class="form-group m-t-10 mb-0 row">
                             <div class="col-sm-6 m-t-20">
                                 <div class="custom-control custom-checkbox text-center">

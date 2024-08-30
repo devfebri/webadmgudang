@@ -8,12 +8,15 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function index (Request $request){
-        $data = Item::all();
+        $data = Item::orderBy('id','desc')->get();
         // dd($data);
         if ($request->ajax()) {
             return datatables()->of($data)
                 ->addColumn('action', function ($f) {
-                    $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">1</div>';
+                    $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">';
+                    $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
+                    $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
+                    $button .= '</div>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -23,12 +26,17 @@ class ItemController extends Controller
         return view('item.index', compact('data'));
     }
     public function create(Request $request){
-        $data= new ProductModel;
-        $data->product_code=$request->product_code;
-        $data->product_description=$request->product_description;
-        $data->serial_number=$request->serial_number;
-        $data->sid=$request->sid;
-        $data->status=$request->status;
+        $data                    = new Item;
+        $data->serial_number    = $request->serial_number;
+        $data->nama             = $request->nama;
+        $data->type             = $request->type;
+        $data->jenis            = $request->jenis;
+        $data->owner            = $request->owner;
+        $data->supplier         = $request->supplier;
+        $data->status           = $request->status;
         $data->save();
+
+
+        return response()->json($data);
     }
 }

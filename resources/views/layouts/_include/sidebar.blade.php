@@ -18,17 +18,33 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route(auth()->user()->role.'_teknisi') }}" class="waves-effect">
+                    <i class="mdi mdi-home"></i>
+                    <span> Teknisi </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route(auth()->user()->role.'_consumen') }}" class="waves-effect">
+                    <i class="mdi mdi-home"></i>
+                    <span> Consumen </span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route(auth()->user()->role.'_item') }}" class="waves-effect">
-
                     <i class="mdi mdi-home"></i>
                     <span> Item </span>
                 </a>
             </li>
             <li>
-                <a href="#" class="waves-effect">
-
+                <a href="{{ route(auth()->user()->role.'_paket') }}" class="waves-effect">
                     <i class="mdi mdi-home"></i>
-                    <span> Stock Transfer </span>
+                    <span> Paket </span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route(auth()->user()->role.'_supplier') }}" class="waves-effect">
+                    <i class="mdi mdi-home"></i>
+                    <span> Supplier </span>
                 </a>
             </li>
 

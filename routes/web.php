@@ -3,6 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\TeknisiController;
+use App\Http\Controllers\ConsumenController;
+use App\Http\Controllers\PaketController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +33,23 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/item',[ItemController::class,'index'])->name('item');
     Route::post('/item/create',[ItemController::class,'create'])->name('itemcreate');
-    Route::delete('/item/delete',[ItemController::class,'delete'])->name('itemdelete');
-    Route::post('/item/edit',[ItemController::class,'edit'])->name('itemedit');
+    Route::delete('/item/{id}/delete',[ItemController::class,'delete'])->name('itemdelete');
+    // Route::post('/item/edit',[ItemController::class,'edit'])->name('itemedit');
+
+    Route::get('/teknisi',[TeknisiController::class,'index'])->name('teknisi');
+    Route::post('/teknisi/create', [TeknisiController::class, 'create'])->name('teknisicreate');
+    Route::delete('/teknisi/{id}/delete', [TeknisiController::class, 'delete'])->name('teknisidelete');
+
+    Route::get('/consumen', [ConsumenController::class, 'index'])->name('consumen');
+    Route::post('/consumen/create', [ConsumenController::class, 'create'])->name('consumencreate');
+    Route::delete('/consumen/{id}/delete', [ConsumenController::class, 'delete'])->name('consumendelete');
+
+    Route::get('/paket', [PaketController::class, 'index'])->name('paket');
+    Route::post('/paket/create', [PaketController::class, 'create'])->name('paketcreate');
+    Route::delete('/paket/{id}/delete', [PaketController::class, 'delete'])->name('paketdelete');
+
+    Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
+    Route::post('/supplier/create', [SupplierController::class, 'create'])->name('suppliercreate');
+    Route::delete('/supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplierdelete');
 
 });

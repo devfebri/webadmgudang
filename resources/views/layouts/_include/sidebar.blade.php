@@ -62,12 +62,10 @@
                 </li>
                 <li>
                     <a href="{{ route(auth()->user()->role.'_supplier') }}" class="waves-effect">
-                        <i class="mdi mdi-truck"></i>
+                        <i class="mdi mdi-clipboard-outline"></i>
                         <span> Supplier </span>
                     </a>
                 </li>
-
-
             @endif
 
 

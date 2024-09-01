@@ -86,18 +86,21 @@ DROP TABLE IF EXISTS `instalasi`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `instalasi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_instalasi` varchar(50) DEFAULT NULL,
   `teknisi_id` int(11) DEFAULT NULL,
   `consumen_id` int(11) DEFAULT NULL,
   `item_id` int(11) DEFAULT NULL,
   `nama_paket` varchar(100) DEFAULT NULL,
   `harga_paket` varchar(100) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
   `tgl_instalasi` date DEFAULT NULL,
   `nomor_internet` varchar(100) DEFAULT NULL,
   `layanan` varchar(15) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,6 +109,7 @@ CREATE TABLE `instalasi` (
 
 LOCK TABLES `instalasi` WRITE;
 /*!40000 ALTER TABLE `instalasi` DISABLE KEYS */;
+INSERT INTO `instalasi` VALUES (3,'0001/PSB/TLKM/2024',NULL,10,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'pasang baru','Waiting','2024-09-01 08:56:16','2024-09-01 01:56:16'),(4,'0002/PSB/TLKM/2024',NULL,10,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'pasang baru','Waiting','2024-09-01 08:56:16','2024-09-01 01:56:16'),(5,'0003/PSB/TLKM/2024',NULL,8,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'Pasang Baru','Waiting','2024-09-01 11:08:19','2024-09-01 04:08:19'),(6,'0004/UP/TLKM/2024',NULL,8,NULL,'PAKET HEMAT INTERNET + TELPON','250000','dawdawdaw',NULL,'21312312312','Up Layanan','Waiting','2024-09-01 11:09:30','2024-09-01 04:09:30');
 /*!40000 ALTER TABLE `instalasi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +132,7 @@ CREATE TABLE `item` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,6 +141,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES (7,4,'BOLT','12321312','ONT_HUAWEI_HG8145V5','STB','HUAWAI','Instal','2024-09-01 11:50:11','2024-09-01 04:50:11');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +187,7 @@ CREATE TABLE `paket` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,6 +196,7 @@ CREATE TABLE `paket` (
 
 LOCK TABLES `paket` WRITE;
 /*!40000 ALTER TABLE `paket` DISABLE KEYS */;
+INSERT INTO `paket` VALUES (2,'PAKET HEMAT INTERNET + TELPON','30 mbps','-','Kesemua Telkomsem','250000','2024-09-01 06:55:00','2024-08-31 23:55:00'),(3,'PAKET FAST INTERNET','100 Mbps','100+ chanel','1000 menit','500000','2024-09-01 06:58:08','2024-08-31 23:58:08');
 /*!40000 ALTER TABLE `paket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,7 +275,7 @@ CREATE TABLE `teknisi` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +284,7 @@ CREATE TABLE `teknisi` (
 
 LOCK TABLES `teknisi` WRITE;
 /*!40000 ALTER TABLE `teknisi` DISABLE KEYS */;
-INSERT INTO `teknisi` VALUES (8,8,'dwaadw','1505012002000003','08521711111','Laki-Laki','2024-09-17','Jambi','dwadaw','2024-09-01 03:51:31','2024-08-31 20:51:31'),(9,9,'dwadwa','21312','085217111113','Laki-Laki','2024-09-18','dwadwa','dwadwa','2024-09-01 03:51:48','2024-08-31 20:51:48');
+INSERT INTO `teknisi` VALUES (8,8,'dwaadw','1505012002000003','08521711111','Laki-Laki','2024-09-17','Jambi','dwadaw','2024-09-01 03:51:31','2024-08-31 20:51:31'),(9,9,'dwadwa','21312','085217111113','Laki-Laki','2024-09-18','dwadwa','dwadwa','2024-09-01 03:51:48','2024-08-31 20:51:48'),(10,11,'Riki','58585858','085266911422','Laki-Laki','2024-09-18','Jambi','dawdawdwa','2024-09-01 09:32:37','2024-09-01 02:32:37');
 /*!40000 ALTER TABLE `teknisi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +309,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,8 +318,39 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin','admin@admin.com',NULL,'$2y$10$V2zDWC67Cj9eNPSH13Rl8uIMs7XCbNSHz5ozsZm2uPnODiVIWHI7.','admin',NULL,NULL,'2024-07-21 07:37:43','2024-07-21 07:37:43'),(8,'08521711111','dwaadw',NULL,NULL,'$2y$10$tZUcYatBSkSHlciK9Oj0hu/9qlRvj6l8GJHmvZAV72W8CikCZ9mYC','teknisi',NULL,NULL,'2024-08-31 20:51:31','2024-08-31 20:51:31'),(9,'085217111113','dwadwa',NULL,NULL,'$2y$10$2X9qSBo.pVmW2b64JQXVU./sYvEpV8HriAxaNF/nxF9mzkAqby.Iy','teknisi',NULL,NULL,'2024-08-31 20:51:48','2024-08-31 20:51:48'),(10,'085266002649','Febri',NULL,NULL,'$2y$10$zo5.MHi8GTTUyM.vQBuZvujFgv8VRUgdyrhghsh9y./SOHr08vR6m','consumen',NULL,NULL,'2024-08-31 20:59:45','2024-08-31 20:59:45');
+INSERT INTO `users` VALUES (1,'admin','admin','admin@admin.com',NULL,'$2y$10$V2zDWC67Cj9eNPSH13Rl8uIMs7XCbNSHz5ozsZm2uPnODiVIWHI7.','admin',NULL,NULL,'2024-07-21 07:37:43','2024-07-21 07:37:43'),(8,'08521711111','dwaadw',NULL,NULL,'$2y$10$tZUcYatBSkSHlciK9Oj0hu/9qlRvj6l8GJHmvZAV72W8CikCZ9mYC','teknisi',NULL,NULL,'2024-08-31 20:51:31','2024-08-31 20:51:31'),(9,'085217111113','dwadwa',NULL,NULL,'$2y$10$2X9qSBo.pVmW2b64JQXVU./sYvEpV8HriAxaNF/nxF9mzkAqby.Iy','teknisi',NULL,NULL,'2024-08-31 20:51:48','2024-08-31 20:51:48'),(10,'085266002649','Febri',NULL,NULL,'$2y$10$zo5.MHi8GTTUyM.vQBuZvujFgv8VRUgdyrhghsh9y./SOHr08vR6m','consumen',NULL,NULL,'2024-08-31 20:59:45','2024-08-31 20:59:45'),(11,'085266911422','Riki',NULL,NULL,'$2y$10$iZiHXKAiil9mIMJPXyQMtuAt6MPZb0h5.OqckbDjNKKRkP/T6frTW','teknisi',NULL,NULL,'2024-09-01 02:32:37','2024-09-01 02:32:37');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `work_order`
+--
+
+DROP TABLE IF EXISTS `work_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `work_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `instalasi_id` int(11) DEFAULT NULL,
+  `teknisi_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `nomor_wo` varchar(20) DEFAULT '0',
+  `jenis_wo` varchar(100) DEFAULT NULL,
+  `pesan` text DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `work_order`
+--
+
+LOCK TABLES `work_order` WRITE;
+/*!40000 ALTER TABLE `work_order` DISABLE KEYS */;
+INSERT INTO `work_order` VALUES (3,5,9,7,'0001/WO/TLKM/2024','Pasang Baru','dwadwa','2024-09-01 11:52:43','2024-09-01 04:52:43'),(4,5,8,7,'0002/WO/TLKM/2024','Pasang Baru','dwadaw','2024-09-01 11:54:12','2024-09-01 04:54:12');
+/*!40000 ALTER TABLE `work_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -329,4 +366,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-01 13:22:21
+-- Dump completed on 2024-09-01 19:19:00

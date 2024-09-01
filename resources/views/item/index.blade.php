@@ -31,6 +31,7 @@
                                     <th>Jenis</th>
                                     <th>Owner</th>
                                     <th>Suplier</th>
+                                    <th>Stok</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -108,6 +109,10 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                <label>Stok</label>
+                                <input type="number" name="stok" id="stok" class="form-control" required>
+                            </div>
                             <div class="form-group">
                                 <label>Owner</label>
                                 <input type="text" name="owner" id="owner" class="form-control" required>
@@ -198,6 +203,10 @@
                     {
                         data: 'data_supplier',
                         name: 'data_supplier'
+                    },
+                    {
+                        data: 'stok',
+                        name: 'stok'
                     },
                     {
                         data: 'status',

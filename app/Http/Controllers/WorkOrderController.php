@@ -48,8 +48,12 @@ class WorkOrderController extends Controller
                     $consumen=Consumen::find($id)->no_hp;
                     // dd($teknisi);
                     return $consumen;
-                })
-                ->rawColumns(['action','nama_teknisi','nohp_teknisi','nohp_consumen'])
+                })->addColumn('item', function ($f) {
+                $item = Item::find($f->item_id)->nama;
+                // dd($teknisi);
+                return $item;
+            })
+                ->rawColumns(['action','nama_teknisi','nohp_teknisi','nohp_consumen','item'])
                 ->addIndexColumn()
                 ->make(true);
         }
@@ -84,6 +88,7 @@ class WorkOrderController extends Controller
         $data->nomor_wo                = $newNomorWo;
         $data->item_id                = $request->item_id;
         $data->jenis_wo                = $layanan;
+        // Instalasi::find($request->instalasi_id)->update(['status'=>'Proses']);
         $data->save();
         // $data=Teknisi::create($request->all());
 

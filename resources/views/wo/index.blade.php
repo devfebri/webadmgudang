@@ -27,11 +27,12 @@
                                     <th>No</th>
                                     <th>Nomor WO</th>
                                     <th>Jenis WO</th>
+                                    <th>Item</th>
                                     <th>Pesan</th>
                                     <th>Teknisi</th>
                                     <th>No Telpon Teknisi</th>
                                     <th>No Telpon Consumen</th>
-                                    <th>Aksi</th>
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                         </table>
@@ -145,6 +146,10 @@
                     , name: 'jenis_wo'
                 }
                 , {
+                    data: 'item'
+                    , name: 'item'
+                }
+                , {
                     data: 'pesan'
                     , name: 'pesan'
                 }
@@ -160,10 +165,10 @@
                     data: 'nohp_consumen'
                     , name: 'nohp_consumen'
                 }
-                , {
-                    data: 'action'
-                    , name: 'action'
-                }
+                // , {
+                //     data: 'action'
+                //     , name: 'action'
+                // }
             ]
         });
         $('#btntambah').on('click', function() {

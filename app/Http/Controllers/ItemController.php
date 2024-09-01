@@ -42,6 +42,7 @@ class ItemController extends Controller
         $data->owner            = $request->owner;
         $data->supplier_id         = $request->supplier_id;
         $data->status           = $request->status;
+        $data->stok           = $request->stok;
         $data->save();
 
 

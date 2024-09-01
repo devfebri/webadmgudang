@@ -103,7 +103,7 @@
                         @csrf
                         <div class="form-group row">
                             <div class="col-12">
-                                <input class="form-control text-center" name="username" type="text" required="" value="{{ $login_username }}" placeholder="NIK / Nomor Telpon">
+                                <input class="form-control text-center" name="username" type="text" required="" value="{{ $login_username }}" placeholder="Nomor Telpon">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -114,7 +114,7 @@
                         <div class="form-group text-center row m-t-20">
                             <div class="col-12">
                                 <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Login</button>
-                                {{-- <a href="/registrasi" class="btn btn-secondary btn-block waves-effect waves-light">Registrasi</a> --}}
+                                <a href="#" class="btn btn-secondary btn-block waves-effect waves-light">Registrasi</a>
                             </div>
                         </div>
                         <div class="form-group m-t-10 mb-0 row">

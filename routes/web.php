@@ -8,6 +8,7 @@ use App\Http\Controllers\ConsumenController;
 use App\Http\Controllers\InstalasiController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\WorkOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,17 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
     Route::post('/supplier/create', [SupplierController::class, 'create'])->name('suppliercreate');
     Route::delete('/supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplierdelete');
+
+    Route::get('/workorder', [WorkOrderController::class, 'index'])->name('workorder');
+    Route::post('/workorder/create', [WorkOrderController::class, 'create'])->name('workordercreate');
+    Route::delete('/workorder/{id}/delete', [WorkOrderController::class, 'delete'])->name('workorderdelete');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/pengajuan_instalasi', [InstalasiController::class, 'index'])->name('instalasi');
+
+    Route::post('/pengajuan_instalasi/create', [InstalasiController::class, 'create'])->name('instalasicreate');
+
+
 
 });
 

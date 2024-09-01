@@ -43,7 +43,7 @@ class ConsumenController extends Controller
         $data->jk                   = $request->jk;
         $data->tgl_lahir            = $request->tgl_lahir;
         $data->tmpt_lahir           = $request->tmpt_lahir;
-        $data->alamat               =  $request->alamat;
+        $data->alamat               = $request->alamat;
 
         $user = new User;
         $user->username = $request->no_hp;

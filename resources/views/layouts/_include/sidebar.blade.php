@@ -33,7 +33,20 @@
                         <li><a href="{{ route(auth()->user()->role.'_consumen') }}">Consumen</a></li>
                     </ul>
                 </li>
-                
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_instalasi') }}" class="waves-effect">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Pengajuan Instalasi </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_workorder') }}" class="waves-effect">
+                        <i class="mdi mdi-truck"></i>
+                        <span> Work Order </span>
+                    </a>
+                </li>
+
+
                 <li>
                     <a href="{{ route(auth()->user()->role.'_item') }}" class="waves-effect">
                         <i class="mdi mdi-server"></i>
@@ -52,6 +65,8 @@
                         <span> Supplier </span>
                     </a>
                 </li>
+                
+
             @endif
 
 

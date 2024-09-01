@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Pengajuan Instalasi <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    <h4 class="page-title">Work Order <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
 
                 </div>
             </div>
@@ -25,12 +25,12 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>No Instalasi</th>
-                                    <th>Nama Paket</th>
-                                    <th>Nomor Internet</th>
-                                    <th>Harga</th>
-                                    <th>Layanan</th>
-                                    <th>Status</th>
+                                    <th>Nomor WO</th>
+                                    <th>Jenis WO</th>
+                                    <th>Pesan</th>
+                                    <th>Teknisi</th>
+                                    <th>No Telpon Teknisi</th>
+                                    <th>No Telpon Consumen</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -57,43 +57,42 @@
                     <input type="hidden" name="id" id="id">
                     <div class="row">
                         <div class="col-sm-12 col-lg-12">
+
                             <div class="form-group">
-                                <label>Layanan</label>
-                                <select class="form-control" name="layanan" id="layanan" required>
+                                <label>Instalasi</label>
+                                <select class="form-control " name="instalasi_id" id="instalasi_id" required>
                                     <option value="">-pilih-</option>
-                                    <option value="Pasang Baru">Pasang Baru</option>
-                                    <option value="Gangguan">Gangguan</option>
-                                    <option value="Up Layanan">Up Layanan</option>
-                                </select>
-                            </div>
-                            <div class="form-group" id="fpaket" style="display: none;">
-                                <label>Paket</label>
-                                <select class="form-control select2" name="paket" id='paket' >
-                                    <option value="">-pilih-</option>
-                                    @foreach ($paket as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama_paket }} - Rp {{ number_format($row->harga,0) }}/month </option>
+                                    @foreach ($instalasi as $row)
+                                    <option value="{{ $row->id }}">{{ $row->kode_instalasi }} - {{ $row->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group" >
-                                <label>Consumen</label>
-                                <select class="form-control select2" name="consumen_id" id="consumen_id">
-                                    <option value="">-pilih-</option>
-                                    @foreach ($consumen as $row1)
-                                    <option value="{{ $row1->id }}">{{ $row1->nama }} - {{ $row1->no_hp }}  </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group" id="fno_internet" style="display: none;">
-                                <label>Nomor Internet</label>
-                                <input type="text" name="no_internet" id="no_internet" class="form-control" >
-                            </div>
-                             <div class="form-group" id="fdeskripsi" style="display: none;">
-                                 <label>Deskripsi</label>
-                                 <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3"></textarea>
+                             <div class="form-group">
+                                 <label>Item</label>
+                                 <select class="form-control " name="item_id" id="item_id" required>
+                                     <option value="">-pilih-</option>
+                                     @foreach ($item as $row2)
+                                     <option value="{{ $row2->id }}">{{ $row2->sarial_number }} - {{ $row2->nama }}</option>
+                                     @endforeach
+                                 </select>
                              </div>
+
+                            <div class="form-group">
+                                <label>Teknisi</label>
+                                <select class="form-control " name="teknisi_id" id="teknisi_id" required>
+                                    <option value="">-pilih-</option>
+                                    @foreach ($teknisi as $row1)
+                                    <option value="{{ $row1->id }}">{{ $row1->nama }} - {{ $row1->no_hp }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Pesan Untuk Teknisi</label>
+                                <textarea name="pesan" id="pesan" rows="3" class="form-control" required></textarea>
+                            </div>
                         </div>
-                        
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -126,41 +125,10 @@
         $(".select2").select2({
             width: '100%'
         });
-
-        $('#layanan').on('change',function(){
-            var value=$(this).val();
-            // alert(value);
-            if(value=='Pasang Baru'){
-                $('#fpaket').show();
-                $('#fdeskripsi').hide();
-                $('#fno_internet').hide();
-                 $("#deskripsi").prop('required',false);
-                 $("#no_internet").prop('required',false);
-                 $("#paket").prop('required',true);
-
-            }else if(value=='Gangguan'){
-                $('#fdeskripsi').show();
-                $('#fno_internet').show();
-                $("#deskripsi").prop('required',true);
-                $("#no_internet").prop('required',true);
-                $("#paket").prop('required',false);
-
-                $('#fpaket').hide();
-            }else if(value=='Up Layanan'){
-                $('#fdeskripsi').show();
-                $('#fno_internet').show();
-                $("#deskripsi").prop('required',true);
-                $("#no_internet").prop('required',true);
-                $("#paket").prop('required',true);
-                $('#fpaket').show();
-
-            }
-
-        });
         var table = $('#data_table').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ route(auth()->user()->role.'_instalasi') }}"
+            , ajax: "{{ route(auth()->user()->role.'_workorder') }}"
             , columns: [{
                     data: null
                     , sortable: false
@@ -169,29 +137,28 @@
                     }
                 , }
                 , {
-                    data: 'kode_instalasi'
-                    , name: 'kode_instalasi'
+                    data: 'nomor_wo'
+                    , name: 'nomor_wo'
                 }
                 , {
-                    data: 'nama_paket'
-                    , name: 'nama_paket'
+                    data: 'jenis_wo'
+                    , name: 'jenis_wo'
                 }
                 , {
-                    data: 'nomor_internet'
-                    , name: 'nomor_internet'
+                    data: 'pesan'
+                    , name: 'pesan'
                 }
                 , {
-                    data: 'harga_paket'
-                    , name: 'harga_paket'
+                    data: 'nama_teknisi'
+                    , name: 'nama_teknisi'
                 }
                 , {
-                    data: 'layanan'
-                    , name: 'layanan'
+                    data: 'nohp_teknisi'
+                    , name: 'nohp_teknisi'
                 }
-                
                 , {
-                    data: 'status'
-                    , name: 'status'
+                    data: 'nohp_consumen'
+                    , name: 'nohp_consumen'
                 }
                 , {
                     data: 'action'
@@ -213,7 +180,7 @@
                     $.ajax({
                         data: $('#form-tambah-edit')
                             .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
-                        url: "{{ route(auth()->user()->role.'_instalasicreate') }}", //url simpan data
+                        url: "{{ route(auth()->user()->role.'_workordercreate') }}", //url simpan data
                         type: "POST", //karena simpan kita pakai method POST
                         dataType: 'json'
                         , success: function(data) { //jika berhasil
@@ -232,7 +199,29 @@
             });
         }
 
-        
+        $('body').on('click', '.delete', function(id) {
+            var dataid = $(this).attr('data-id');
+            var url = "{{ route(auth()->user()->role.'_workorderdelete', ':dataid') }}";
+
+            urls = url.replace(':dataid', dataid);
+            alertify.confirm('Seluruh data yang berkaitan di paket ini akan ikut terhapus, apa anda yakin ?', function() {
+                $.ajax({
+                    url: urls, //eksekusi ajax ke url ini
+                    type: 'delete'
+                    , success: function(data) { //jika sukses
+                        setTimeout(function() {
+                            var oTable = $('#data_table').dataTable();
+                            oTable.fnDraw(false); //reset datatable
+                            $('#tombol-hapus').text('Yakin');
+                        });
+
+                    }
+                });
+                alertify.success('Data berhasil dihapus');
+            }, function() {
+                alertify.error('Cancel');
+            });
+        });
 
 
     });

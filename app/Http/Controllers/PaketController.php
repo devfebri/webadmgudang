@@ -20,7 +20,11 @@ class PaketController extends Controller
                     $button .= '</div>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('harga', function ($f) {
+                    $button = 'Rp '.number_format($f->harga,0);
+                    return $button;
+                })
+                ->rawColumns(['action','harga'])
                 ->addIndexColumn()
                 ->make(true);
         }

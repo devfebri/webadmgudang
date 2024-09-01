@@ -15,11 +15,19 @@ class WorkOrderController extends Controller
 {
     public function index(Request $request)
     {
-        $data = WorkOrder::orderBy('id', 'desc')->get();
+        if(auth()->user()->role=='admin'){
+
+            $data = WorkOrder::orderBy('id', 'desc')->get();
+        }else{
+            $teknisi=Teknisi::where('user_id', auth()->user()->id)->first()->id;
+            $data = WorkOrder::where('teknisi_id',$teknisi)->orderBy('id', 'desc')->get();
+
+        }
         $instalasi=DB::table('instalasi')
             ->join('consumen', 'consumen.id', '=', 'instalasi.consumen_id')
             ->select('instalasi.id','instalasi.kode_instalasi', 'consumen.nama')
             ->where('instalasi.status','Waiting')
+            ->orWhere('instalasi.status','Proses')
             ->get();
             $teknisi=Teknisi::all();
             $item=Item::all();
@@ -27,11 +35,20 @@ class WorkOrderController extends Controller
             return datatables()->of($data)
                 ->addColumn('action', function ($f) {
                     $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">';
-                    // $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
-                    if ($f->status == 'Waiting') {
-                        $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
-                    } else {
-                        $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" disabled data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
+                // $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
+                // if ($f->status == 'Waiting') {
+                //     $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
+                // } else {
+                //     $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" disabled data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
+                // }
+                    $wo = WorkOrder::find($f->id);
+                    $in = Instalasi::find($wo->instalasi_id);
+                    if($in->status=='Waiting'){
+                        $button .= '<a href="' . route('teknisi_proseswo', ['id' => $f->id]) . '" class="tabledit-delete-button btn btn-sm btn-warning" style="float: none; margin: 5px;"><span >Proses</span></a>';
+                    }else if($in->status=='Proses'){
+                        $button .= '<a href="' . route('teknisi_selesaiwo', ['id' => $f->id]) . '" class="tabledit-delete-button btn btn-sm btn-primary" style="float: none; margin: 5px;"><span >Selesai</span></a>';
+                    }else{
+                        $button .= '<a href="#" class="tabledit-delete-button btn btn-sm btn-primary" disabled style="float: none; margin: 5px;"><span >Selesai</span></a>';
                     }
                     $button .= '</div>';
                     return $button;
@@ -101,5 +118,18 @@ class WorkOrderController extends Controller
         $user = User::find($teknisi->user_id)->delete();
         $teknisi->delete();
         return response()->json($teknisi);
+    }
+
+    public function proseswo($id){
+        $wo=WorkOrder::find($id);
+        $in=Instalasi::find($wo->instalasi_id)->update(['status' => 'Proses']);
+        return redirect()->back();
+        // dd($id);
+    }
+    public function selesaiwo($id){
+        $wo=WorkOrder::find($id);
+        $in=Instalasi::find($wo->instalasi_id)->update(['status' => 'Selesai']);
+        return redirect()->back();
+        // dd($id);
     }
 }

@@ -9,4 +9,5 @@ class Instalasi extends Model
 {
     use HasFactory;
     protected $table='instalasi';
+    protected $fillable=['status'];
 }

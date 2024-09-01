@@ -17,13 +17,14 @@
                     <span> Dashboard </span>
                 </a>
             </li>
-            @if(auth()->user()->role=='consumen')
+            @if(auth()->user()->role=='teknisi')
                 <li>
-                    <a href="{{ route(auth()->user()->role.'_instalasi') }}" class="waves-effect">
-                        <i class="mdi mdi-home"></i>
-                        <span> Pengajuan Instalasi </span>
+                    <a href="{{ route(auth()->user()->role.'_workorder') }}" class="waves-effect">
+                        <i class="mdi mdi-truck"></i>
+                        <span> Work Order </span>
                     </a>
                 </li>
+
             @endif
             @if(auth()->user()->role=='admin')
                 <li class="has_sub">
@@ -52,7 +53,7 @@
                         <i class="mdi mdi-server"></i>
                         <span> Item </span>
                     </a>
-                </li>   
+                </li>
                 <li>
                     <a href="{{ route(auth()->user()->role.'_paket') }}" class="waves-effect">
                         <i class="mdi mdi-tablet-android"></i>
@@ -65,7 +66,7 @@
                         <span> Supplier </span>
                     </a>
                 </li>
-                
+
 
             @endif
 

@@ -68,12 +68,12 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
 });
 
 Route::prefix('consumen')->middleware('auth', 'role:consumen')->name('consumen_')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/pengajuan_instalasi', [InstalasiController::class, 'index'])->name('instalasi');
-
-    Route::post('/pengajuan_instalasi/create', [InstalasiController::class, 'create'])->name('instalasicreate');
 });
 Route::prefix('teknisi')->middleware('auth', 'role:teknisi')->name('teknisi_')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+
+    Route::get('/workorder', [WorkOrderController::class, 'index'])->name('workorder');
+    Route::get('/workorder/proseswo/{id}', [WorkOrderController::class, 'proseswo'])->name('proseswo');
+    Route::get('/workorder/selesaiwo/{id}', [WorkOrderController::class, 'selesaiwo'])->name('selesaiwo');
+
 });

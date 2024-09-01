@@ -12,7 +12,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
+                    @if(auth()->user()->role=='admin')
+
                     <h4 class="page-title">Work Order <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    @endif
 
                 </div>
             </div>
@@ -32,7 +35,9 @@
                                     <th>Teknisi</th>
                                     <th>No Telpon Teknisi</th>
                                     <th>No Telpon Consumen</th>
-                                    {{-- <th>Aksi</th> --}}
+                                    @if(auth()->user()->role=='teknisi')
+                                    <th>Aksi</th>
+                                    @endif
                                 </tr>
                             </thead>
                         </table>
@@ -165,12 +170,16 @@
                     data: 'nohp_consumen'
                     , name: 'nohp_consumen'
                 }
-                // , {
-                //     data: 'action'
-                //     , name: 'action'
-                // }
+                @if (auth()->user()->role=='teknisi')
+
+                , {
+                    data: 'action'
+                    , name: 'action'
+                }
+                @endif
             ]
         });
+        @if(auth()->user()->role=='admin')
         $('#btntambah').on('click', function() {
             $('#tambah-edit-modal').modal('show');
 
@@ -227,6 +236,7 @@
                 alertify.error('Cancel');
             });
         });
+        @endif
 
 
     });

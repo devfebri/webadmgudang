@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover table-bordered" id="data_table">
+                        <table class="table table-hover table-bordered" id="data_table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -31,7 +31,7 @@
                                     <th>Nama Pengirim</th>
                                     <th>Jumlah Barang</th>
                                     <th>File Surat</th>
-                                    <th>Aksi</th>
+                                    <th >Aksi</th>
                                 </tr>
                             </thead>
                         </table>

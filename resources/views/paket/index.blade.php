@@ -29,6 +29,7 @@
                                     <th>Internet</th>
                                     <th>TV</th>
                                     <th>Telpon</th>
+                                    <th>Harga</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -70,6 +71,10 @@
                             <div class="form-group">
                                 <label>Telpon</label>
                                 <input type="text" name="telpon" id="telpon" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label>harga</label>
+                                <input type="number" name="harga" id="harga" class="form-control" >
                             </div>
                         </div>
 
@@ -132,6 +137,10 @@
                 , {
                     data: 'telpon'
                     , name: 'telpon'
+                }
+                , {
+                    data: 'harga'
+                    , name: 'harga'
                 }
                 , {
                     data: 'action'

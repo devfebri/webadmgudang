@@ -32,6 +32,9 @@ class ConsumenController extends Controller
     }
     public function create(Request $request)
     {
+        $request->validate([
+            'no_hp' => 'unique:consumen',
+        ]);
         // dd($request->all());
         $data                       = new Consumen;
         $data->nama                 = $request->nama;
@@ -43,8 +46,8 @@ class ConsumenController extends Controller
         $data->alamat               =  $request->alamat;
 
         $user = new User;
-        $user->username = $request->nik;
-        $user->password = bcrypt($request->nik);
+        $user->username = $request->no_hp;
+        $user->password = bcrypt($request->no_hp);
         $user->name = $request->nama;
         $user->role = 'consumen';
         $user->save();

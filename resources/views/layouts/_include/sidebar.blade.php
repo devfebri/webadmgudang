@@ -17,36 +17,42 @@
                     <span> Dashboard </span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route(auth()->user()->role.'_teknisi') }}" class="waves-effect">
-                    <i class="mdi mdi-home"></i>
-                    <span> Teknisi </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route(auth()->user()->role.'_consumen') }}" class="waves-effect">
-                    <i class="mdi mdi-home"></i>
-                    <span> Consumen </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route(auth()->user()->role.'_item') }}" class="waves-effect">
-                    <i class="mdi mdi-home"></i>
-                    <span> Item </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route(auth()->user()->role.'_paket') }}" class="waves-effect">
-                    <i class="mdi mdi-home"></i>
-                    <span> Paket </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route(auth()->user()->role.'_supplier') }}" class="waves-effect">
-                    <i class="mdi mdi-home"></i>
-                    <span> Supplier </span>
-                </a>
-            </li>
+            @if(auth()->user()->role=='consumen')
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_instalasi') }}" class="waves-effect">
+                        <i class="mdi mdi-home"></i>
+                        <span> Pengajuan Instalasi </span>
+                    </a>
+                </li>
+            @endif
+            @if(auth()->user()->role=='admin')
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account"></i> <span> User </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route(auth()->user()->role.'_teknisi') }}">Teknisi</a></li>
+                        <li><a href="{{ route(auth()->user()->role.'_consumen') }}">Consumen</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_item') }}" class="waves-effect">
+                        <i class="mdi mdi-server"></i>
+                        <span> Item </span>
+                    </a>
+                </li>   
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_paket') }}" class="waves-effect">
+                        <i class="mdi mdi-tablet-android"></i>
+                        <span> Paket </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_supplier') }}" class="waves-effect">
+                        <i class="mdi mdi-truck"></i>
+                        <span> Supplier </span>
+                    </a>
+                </li>
+            @endif
 
 
         </ul>

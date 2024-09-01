@@ -34,7 +34,7 @@ class PaketController extends Controller
         $data->internet                     = $request->internet;
         $data->tv                           = $request->tv;
         $data->telpon                       = $request->telpon;
-
+        $data->harga                        = $request->harga;
         $data->save();
 
         return response()->json($data);

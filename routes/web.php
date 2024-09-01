@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\ConsumenController;
+use App\Http\Controllers\InstalasiController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -52,4 +53,15 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
     Route::post('/supplier/create', [SupplierController::class, 'create'])->name('suppliercreate');
     Route::delete('/supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplierdelete');
 
+});
+
+Route::prefix('consumen')->middleware('auth', 'role:consumen')->name('consumen_')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/pengajuan_instalasi', [InstalasiController::class, 'index'])->name('instalasi');
+
+    Route::post('/pengajuan_instalasi/create', [InstalasiController::class, 'create'])->name('instalasicreate');
+});
+Route::prefix('teknisi')->middleware('auth', 'role:teknisi')->name('teknisi_')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
 });

@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Item <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    <h4 class="page-title">Pengajuan Instalasi <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
 
                 </div>
             </div>
@@ -25,12 +25,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Sarial Number</th>
-                                    <th>Nama Item</th>
-                                    <th>Type</th>
-                                    <th>Jenis</th>
-                                    <th>Owner</th>
-                                    <th>Suplier</th>
+                                    <th>Nama Paket</th>
+                                    <th>Nomor Internet</th>
+                                    <th>Harga</th>
+                                    <th>Layanan</th>
                                     <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -53,7 +51,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="needs-validation" id="form-tambah-edit" name="form-tambah-edit" >
+            <form class="needs-validation" id="form-tambah-edit" name="form-tambah-edit">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
                     <div class="row">
@@ -113,15 +111,6 @@
                                 <input type="text" name="owner" id="owner" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Supplier</label>
-                                <select class="form-control select2" name="supplier_id" required>
-                                    <option value="">-pilih-</option>
-                                    @foreach ($supplier as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama_supplier }} - {{ $row->no_surat }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label>Status</label>
                                 <select class="form-control" name="status" required>
                                     <option value="">-pilih-</option>
@@ -154,121 +143,92 @@
 <script src='{{ asset('template/assets/plugins/select2/select2.min.js') }}'></script>
 <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-             $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $(".select2").select2({
-                width: '100%'
-            });
-            var table = $('#data_table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route(auth()->user()->role.'_item') }}",
-                columns: [{
-                        data: null,
-                        sortable: false,
-                        render: function (data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1
-                        },
-                    },
-                    {
-                        data: 'serial_number',
-                        name: 'serial_number'
-                    },
-                    {
-                        data: 'nama',
-                        name: 'nama'
-                    },
-                    {
-                        data: 'type',
-                        name: 'type'
-                    },
-                    {
-                        data: 'jenis',
-                        name: 'jenis'
-                    },
-                    {
-                        data: 'owner',
-                        name: 'owner'
-                    },
-                    {
-                        data: 'data_supplier',
-                        name: 'data_supplier'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    }
-                ]
-            });
-            $('#btntambah').on('click', function() {
-                $('#tambah-edit-modal').modal('show');
-
-                $('#modal-judul').html('Tambah Data');
-
-            });
-            if ($("#form-tambah-edit").length > 0) {
-                $("#form-tambah-edit").validate({
-                    submitHandler: function(form) {
-                        var actionType = $('#tombol-simpan').val();
-                        var simpan = $('#tombol-simpan').html('Sending..');
-                        $.ajax({
-                            data: $('#form-tambah-edit')
-                                .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
-                            url: "{{ route(auth()->user()->role.'_itemcreate') }}", //url simpan data
-                            type: "POST", //karena simpan kita pakai method POST
-                            dataType: 'json'
-                            , success: function(data) { //jika berhasil
-                                $('#form-tambah-edit').trigger("reset"); //form
-                                $('#tambah-edit-modal').modal('hide'); //modal hide
-                                $('#tombol-simpan').html('Simpan'); //tombol simpan
-                                var oTable = $('#data_table')
-                                    .dataTable(); //inialisasi datatable
-                                oTable.fnDraw(false);
-                            }
-                            , error: function(data) { //jika error tampilkan error pada console
-                                $('#tombol-simpan').html('Simpan');
-                            }
-                        });
-                    }
-                });
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+        $(".select2").select2({
+            width: '100%'
+        });
+        var table = $('#data_table').DataTable({
+            processing: true
+            , serverSide: true
+            , ajax: "{{ route(auth()->user()->role.'_instalasi') }}"
+            , columns: [{
+                    data: null
+                    , sortable: false
+                    , render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1
+                    }
+                , }
+                , {
+                    data: 'nama_paket'
+                    , name: 'nama_paket'
+                }
+                , {
+                    data: 'nomor_internet'
+                    , name: 'nomor_internet'
+                }
+                , {
+                    data: 'harga'
+                    , name: 'harga'
+                }
+                , {
+                    data: 'layanan'
+                    , name: 'layanan'
+                }
+                
+                , {
+                    data: 'status'
+                    , name: 'status'
+                }
+                , {
+                    data: 'action'
+                    , name: 'action'
+                }
+            ]
+        });
+        $('#btntambah').on('click', function() {
+            $('#tambah-edit-modal').modal('show');
 
-            $('body').on('click', '.delete', function(id) {
-                var dataid = $(this).attr('data-id');
-                var url = "{{ route(auth()->user()->role.'_itemdelete', ':dataid') }}";
-
-                urls = url.replace(':dataid', dataid);
-                alertify.confirm('Seluruh data yang berkaitan di item ini akan ikut terhapus, apa anda yakin ?', function() {
-                    $.ajax({
-                        url: urls, //eksekusi ajax ke url ini
-                        type: 'delete'
-                        , success: function(data) { //jika sukses
-                            setTimeout(function() {
-                                var oTable = $('#data_table').dataTable();
-                                oTable.fnDraw(false); //reset datatable
-                                $('#tombol-hapus').text('Yakin');
-                            });
-
-                        }
-                    });
-                    alertify.success('Data berhasil dihapus');
-                }, function() {
-                    alertify.error('Cancel');
-                });
-            });
-
+            $('#modal-judul').html('Tambah Data');
 
         });
+        if ($("#form-tambah-edit").length > 0) {
+            $("#form-tambah-edit").validate({
+                submitHandler: function(form) {
+                    var actionType = $('#tombol-simpan').val();
+                    var simpan = $('#tombol-simpan').html('Sending..');
+                    $.ajax({
+                        data: $('#form-tambah-edit')
+                            .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
+                        url: "{{ route(auth()->user()->role.'_instalasicreate') }}", //url simpan data
+                        type: "POST", //karena simpan kita pakai method POST
+                        dataType: 'json'
+                        , success: function(data) { //jika berhasil
+                            $('#form-tambah-edit').trigger("reset"); //form
+                            $('#tambah-edit-modal').modal('hide'); //modal hide
+                            $('#tombol-simpan').html('Simpan'); //tombol simpan
+                            var oTable = $('#data_table')
+                                .dataTable(); //inialisasi datatable
+                            oTable.fnDraw(false);
+                        }
+                        , error: function(data) { //jika error tampilkan error pada console
+                            $('#tombol-simpan').html('Simpan');
+                        }
+                    });
+                }
+            });
+        }
 
-    </script>
+        
+
+
+    });
+
+</script>
 @stop
 

@@ -33,6 +33,9 @@ class TeknisiController extends Controller
     }
     public function create(Request $request)
     {
+        $request->validate([
+            'no_hp' => 'unique:teknisi',
+        ]);
         // dd($request->all());
         $data                       = new Teknisi;
         $data->nama                 = $request->nama;
@@ -46,8 +49,8 @@ class TeknisiController extends Controller
 
 
         $user = new User;
-        $user->username=$request->nik;
-        $user->password=bcrypt($request->nik);
+        $user->username=$request->no_hp;
+        $user->password=bcrypt($request->no_hp);
         $user->name=$request->nama;
         $user->role='teknisi';
         $user->save();

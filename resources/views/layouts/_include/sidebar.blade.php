@@ -60,12 +60,15 @@
                         <span> Paket </span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route(auth()->user()->role.'_supplier') }}" class="waves-effect">
-                        <i class="mdi mdi-clipboard-outline"></i>
-                        <span> Supplier </span>
-                    </a>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account"></i> <span> Supplier </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route(auth()->user()->role.'_supplier') }}">Barang Masuk</a></li>
+                        <li><a href="{{ route(auth()->user()->role.'_barangkeluar') }}">Barang Keluar</a></li>
+                    </ul>
                 </li>
+
                 {{-- <li>
                     <a href="{{ route(auth()->user()->role.'_laporan') }}" class="waves-effect">
                         <i class="mdi mdi-clipboard-outline"></i>

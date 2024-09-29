@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TeknisiController;
@@ -55,6 +56,10 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
     Route::post('/supplier/create', [SupplierController::class, 'create'])->name('suppliercreate');
     Route::delete('/supplier/{id}/delete', [SupplierController::class, 'delete'])->name('supplierdelete');
+
+    Route::get('/barang_keluar', [BarangKeluarController::class, 'index'])->name('barangkeluar');
+    Route::post('/barang_keluar/create', [BarangKeluarController::class, 'create'])->name('barangkeluarcreate');
+    Route::delete('/barang_keluar/{id}/delete', [BarangKeluarController::class, 'delete'])->name('barangkeluardelete');
 
     Route::get('/workorder', [WorkOrderController::class, 'index'])->name('workorder');
     Route::post('/workorder/create', [WorkOrderController::class, 'create'])->name('workordercreate');

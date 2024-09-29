@@ -35,7 +35,7 @@ class ItemController extends Controller
     }
     public function create(Request $request){
         $data                    = new Item;
-        $data->serial_number    = $request->serial_number;
+        // $data->serial_number    = $request->serial_number;
         $data->nama             = $request->nama;
         $data->type             = $request->type;
         $data->jenis            = $request->jenis;

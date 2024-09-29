@@ -25,7 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Sarial Number</th>
+                                    {{-- <th>Sarial Number</th> --}}
                                     <th>Nama Item</th>
                                     <th>Type</th>
                                     <th>Jenis</th>
@@ -181,10 +181,10 @@
                             return meta.row + meta.settings._iDisplayStart + 1
                         },
                     },
-                    {
-                        data: 'serial_number',
-                        name: 'serial_number'
-                    },
+                    // {
+                    //     data: 'serial_number',
+                    //     name: 'serial_number'
+                    // },
                     {
                         data: 'nama',
                         name: 'nama'

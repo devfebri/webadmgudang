@@ -77,10 +77,35 @@
 
                         </div>
                         <div class="col-sm-12 col-lg-6">
-                            <div class="form-group">
-                                <label>Type</label>
-                                <input type="text" name="type" id="type" class="form-control" required>
-                            </div>
+                            <select class="form-control select2" name="type" required>
+                                <option value="">-pilih-</option>
+                                <option value="ONT_HUAWEI_HG8145V5">ONT_HUAWEI_HG8145V5</option>
+                                <option value="ONT_FIBERHOME_HG6245N">ONT_FIBERHOME_HG6245N</option>
+                                <option value="ONT_ZTE_F670 V2.0">ONT_ZTE_F670 V2.0</option>
+                                <option value="SetTopBoxIPTV_FIBERHOME_HG680FJ">SetTopBoxIPTV_FIBERHOME_HG680FJ</option>
+                                <option value="SetTopBoxIPTV_FIBERHOME_HG680-P">SetTopBoxIPTV_FIBERHOME_HG680-P</option>
+                                <option value="SetTopBox_ZTE_B860H_V5.0">SetTopBox_ZTE_B860H_V5.0</option>
+                                <option value="ORBIT_SS_ZTE_K10_STAR_Z2"> ORBIT_SS_ZTE_K10_STAR_Z2</option>
+                                <option value="ORBIT_SS ex ROUTER_HKM0128a">ORBIT_SS ex ROUTER_HKM0128a</option>
+                                <option value="ONT_FIBERHOME_HG6243C">ONT_FIBERHOME_HG6243C</option>
+                                <option value="ONT_FIBERHOME_HG6145F">ONT_FIBERHOME_HG6145F</option>
+                                <option value="ONT_HUAWEI_HG8245A">ONT_HUAWEI_HG8245A</option>
+                                <option value="ONT_ZTE_F609_V5.3">ONT_ZTE_F609_V5.3</option>
+                                <option value="ONT_ZTE_F670L">ONT_ZTE_F670L</option>
+                                <option value="SetTopBoxIPTV_ZTE_B860H_V2.1"> SetTopBoxIPTV_ZTE_B860H_V2.1</option>
+                                <option value="SetTopBoxIPTV_ZTE_B860H"> SetTopBoxIPTV_ZTE_B860H</option>
+                                <option value="SetTopBox_ZTE_ZX10_B866F_V1.1"> SetTopBox_ZTE_ZX10_B866F_V1.1</option>
+                                <option value="ONT_HUAWEI_HG8245H5">ONT_HUAWEI_HG8245H5</option>
+                                <option value="ONT_HUAWEI_HG8245H">ONT_HUAWEI_HG8245H</option>
+                                <option value="ONT_HUAWEI_HG8245"> ONT_HUAWEI_HG8245</option>
+                                <option value="ONT_FIBERHOME_HG6145D2">ONT_FIBERHOME_HG6145D2</option>
+                                <option value="ONT_ZTE_F609">ONT_ZTE_F609</option>
+                                <option value="SetTopBoxIPTV_ZTE_B760H">SetTopBoxIPTV_ZTE_B760H</option>
+                                <option value="ONT_ZTE_F670"> ONT_ZTE_F670</option>
+                                <option value="ONT_ZTE_F660">ONT_ZTE_F660</option>
+                                <option value="TYPE">TYPE</option>
+                            </select>
+
                             <div class="form-group">
                                 <label>Jumlah Barang</label>
                                 <input type="number" name="jml_barang" id="jml_barang" class="form-control" required>

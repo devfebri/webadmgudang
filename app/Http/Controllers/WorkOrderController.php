@@ -133,6 +133,9 @@ class WorkOrderController extends Controller
     }
     public function selesaiwo($id){
         $wo=WorkOrder::find($id);
+        $item=Item::find($wo->item_id);
+        $stok=$item->stok-1;
+        $item->update(['stok' => $stok]);
         $in=Instalasi::find($wo->instalasi_id)->update(['status' => 'Selesai']);
         return redirect()->back();
         // dd($id);

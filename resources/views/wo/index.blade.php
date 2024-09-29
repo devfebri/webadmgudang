@@ -24,7 +24,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover table-bordered" id="data_table">
+                        <table class="table table-hover table-bordered" id="data_table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>No</th>

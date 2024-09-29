@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Consumen;
 use App\Models\Instalasi;
 use App\Models\User;
+use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 
 class ConsumenController extends Controller
@@ -63,7 +64,11 @@ class ConsumenController extends Controller
     {
         $consumen = Consumen::find($id);
         $user = User::find($consumen->user_id)->delete();
-        $instalasi=Instalasi::where('consumen_id',$id)->delete();
+        $instalasi=Instalasi::where('consumen_id',$id);
+        foreach($instalasi->get() as $row){
+            $wo=WorkOrder::where('instalasi_id',$row->id)->delete();
+        }
+        $instalasi->delete();
         $consumen->delete();
         return response()->json($consumen);
     }

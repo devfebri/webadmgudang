@@ -37,6 +37,7 @@ class SupplierController extends Controller
         $data->nama_penerima                    = $request->nama_penerima;
         $data->nama_pengirim                    = $request->nama_pengirim;
         $data->jml_barang                       = $request->jml_barang;
+        $data->type                             = $request->type;
         if ($request->has('file_surat')) {
             $file = $request->file('file_surat');
             $filename = $file->getClientOriginalName() . '-' . time() . '.' . $file->extension();

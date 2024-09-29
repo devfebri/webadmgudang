@@ -77,6 +77,7 @@
 
                         </div>
                         <div class="col-sm-12 col-lg-6">
+                            <label>Type</label>
                             <select class="form-control select2" name="type" required>
                                 <option value="">-pilih-</option>
                                 <option value="ONT_HUAWEI_HG8145V5">ONT_HUAWEI_HG8145V5</option>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consumen;
+use App\Models\Instalasi;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -62,6 +63,7 @@ class ConsumenController extends Controller
     {
         $consumen = Consumen::find($id);
         $user = User::find($consumen->user_id)->delete();
+        $instalasi=Instalasi::where('consumen_id',$id)->delete();
         $consumen->delete();
         return response()->json($consumen);
     }

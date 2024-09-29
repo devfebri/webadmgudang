@@ -237,6 +237,30 @@
             });
         }
 
+        $('body').on('click', '.delete', function(id) {
+            var dataid = $(this).attr('data-id');
+            var url = "{{ route(auth()->user()->role.'_instalasidelete', ':dataid') }}";
+
+            urls = url.replace(':dataid', dataid);
+            alertify.confirm('Seluruh data yang berkaitan pada instalasi ini akan ikut terhapus, apa anda yakin ?', function() {
+                $.ajax({
+                    url: urls, //eksekusi ajax ke url ini
+                    type: 'delete'
+                    , success: function(data) { //jika sukses
+                        setTimeout(function() {
+                            var oTable = $('#data_table').dataTable();
+                            oTable.fnDraw(false); //reset datatable
+                            $('#tombol-hapus').text('Yakin');
+                        });
+
+                    }
+                });
+                alertify.success('Data berhasil dihapus');
+            }, function() {
+                alertify.error('Cancel');
+            });
+        });
+
 
 
 

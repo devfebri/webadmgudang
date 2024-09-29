@@ -18,6 +18,7 @@ class InstalasiController extends Controller
         if ($request->ajax()) {
             return datatables()->of($data)
                 ->addColumn('action', function ($f) {
+                    // dd($f->status);
                     $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">';
                     // $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
                     if($f->status=='Waiting'){
@@ -40,6 +41,14 @@ class InstalasiController extends Controller
         $consumen=Consumen::all();
         return view('instalasi.index', compact('data','paket','consumen'));
     }
+
+    public function delete($id)
+    {
+        $item = Instalasi::find($id);
+        $item->delete();
+        return response()->json($item);
+    }
+
     public function create(Request $request)
     {
         // dd($request->all());
@@ -98,10 +107,6 @@ class InstalasiController extends Controller
 
         return response()->json($data);
     }
-    public function delete($id)
-    {
-        $item = Item::find($id);
-        $item->delete();
-        return response()->json($item);
-    }
+
+
 }

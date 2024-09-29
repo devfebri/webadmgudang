@@ -64,6 +64,7 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
     Route::get('/pengajuan_instalasi', [InstalasiController::class, 'index'])->name('instalasi');
 
     Route::post('/pengajuan_instalasi/create', [InstalasiController::class, 'create'])->name('instalasicreate');
+    Route::delete('/pengajuan_instalasi/{id}/delete', [InstalasiController::class, 'delete'])->name('instalasidelete');
 
     Route::get('/laporan',[LaporanController::class,'index'])->name('laporan');
 

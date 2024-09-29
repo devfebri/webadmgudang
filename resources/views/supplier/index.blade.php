@@ -29,7 +29,6 @@
                                     <th>Nama Supplier</th>
                                     <th>Nama Penerima</th>
                                     <th>Nama Pengirim</th>
-                                    <th>Type</th>
                                     <th>Jumlah Barang</th>
                                     <th>File Surat</th>
                                     <th >Aksi</th>
@@ -77,10 +76,6 @@
 
                         </div>
                         <div class="col-sm-12 col-lg-6">
-                            <div class="form-group">
-                                <label>Type Barang</label>
-                                <input type="text" name="type" id="type" class="form-control" required>
-                            </div>
                             <div class="form-group">
                                 <label>Jumlah Barang</label>
                                 <input type="number" name="jml_barang" id="jml_barang" class="form-control" required>
@@ -151,10 +146,6 @@
                 , {
                     data: 'nama_pengirim'
                     , name: 'nama_pengirim'
-                }
-                , {
-                    data: 'type'
-                    , name: 'type'
                 }
                 , {
                     data: 'jml_barang'

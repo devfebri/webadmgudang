@@ -34,26 +34,19 @@ class ItemController extends Controller
         return view('item.index', compact('data','supplier'));
     }
     public function create(Request $request){
-        $i = 1;
-        while ($i <= $request->stok) {
-            // dd($i);
-            $data                   = new Item;
-            $data->serial_number    = $request->serial_number.$i;
-            $data->nama             = $request->nama;
-            $data->type             = $request->type;
-            $data->jenis            = $request->jenis;
-            $data->owner            = $request->owner;
-            $data->supplier_id      = $request->supplier_id;
-            $data->status           = $request->status;
-            $data->stok             = $request->stok;
-            $data->save();
-
-            $i++;
+        $data                    = new Item;
+        $data->serial_number    = $request->serial_number;
+        $data->nama             = $request->nama;
+        $data->type             = $request->type;
+        $data->jenis            = $request->jenis;
+        $data->owner            = $request->owner;
+        $data->supplier_id         = $request->supplier_id;
+        $data->status           = $request->status;
+        $data->stok           = $request->stok;
+        $data->save();
 
 
-        }
-
-        return response()->json($i);
+        return response()->json($data);
     }
     public function delete($id)
     {

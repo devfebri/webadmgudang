@@ -35,6 +35,7 @@
                                     <th>Teknisi</th>
                                     <th>No Telpon Teknisi</th>
                                     <th>No Telpon Consumen</th>
+                                    <th>Status</th>
                                     @if(auth()->user()->role=='teknisi')
                                     <th>Aksi</th>
                                     @endif
@@ -134,6 +135,8 @@
         var table = $('#data_table').DataTable({
             processing: true
             , serverSide: true
+             ,scrollX: true
+
             , ajax: "{{ route(auth()->user()->role.'_workorder') }}"
             , columns: [{
                     data: null
@@ -169,10 +172,13 @@
                 , {
                     data: 'nohp_consumen'
                     , name: 'nohp_consumen'
-                }
-                @if (auth()->user()->role=='teknisi')
-
-                , {
+                },
+                 {
+                    data: 'status'
+                    , name: 'status'
+                },
+                @if(auth()->user()->role=='teknisi')
+                {
                     data: 'action'
                     , name: 'action'
                 }
@@ -180,62 +186,57 @@
             ]
         });
         @if(auth()->user()->role=='admin')
-        $('#btntambah').on('click', function() {
-            $('#tambah-edit-modal').modal('show');
-
-            $('#modal-judul').html('Tambah Data');
-
-        });
-        if ($("#form-tambah-edit").length > 0) {
-            $("#form-tambah-edit").validate({
-                submitHandler: function(form) {
-                    var actionType = $('#tombol-simpan').val();
-                    var simpan = $('#tombol-simpan').html('Sending..');
-                    $.ajax({
-                        data: $('#form-tambah-edit')
-                            .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
-                        url: "{{ route(auth()->user()->role.'_workordercreate') }}", //url simpan data
-                        type: "POST", //karena simpan kita pakai method POST
-                        dataType: 'json'
-                        , success: function(data) { //jika berhasil
-                            $('#form-tambah-edit').trigger("reset"); //form
-                            $('#tambah-edit-modal').modal('hide'); //modal hide
-                            $('#tombol-simpan').html('Simpan'); //tombol simpan
-                            var oTable = $('#data_table')
-                                .dataTable(); //inialisasi datatable
-                            oTable.fnDraw(false);
-                        }
-                        , error: function(data) { //jika error tampilkan error pada console
-                            $('#tombol-simpan').html('Simpan');
-                        }
-                    });
-                }
+            $('#btntambah').on('click', function() {
+                $('#tambah-edit-modal').modal('show');
+                $('#modal-judul').html('Tambah Data');
             });
-        }
-
-        $('body').on('click', '.delete', function(id) {
-            var dataid = $(this).attr('data-id');
-            var url = "{{ route(auth()->user()->role.'_workorderdelete', ':dataid') }}";
-
-            urls = url.replace(':dataid', dataid);
-            alertify.confirm('Seluruh data yang berkaitan di paket ini akan ikut terhapus, apa anda yakin ?', function() {
-                $.ajax({
-                    url: urls, //eksekusi ajax ke url ini
-                    type: 'delete'
-                    , success: function(data) { //jika sukses
-                        setTimeout(function() {
-                            var oTable = $('#data_table').dataTable();
-                            oTable.fnDraw(false); //reset datatable
-                            $('#tombol-hapus').text('Yakin');
+            if ($("#form-tambah-edit").length > 0) {
+                $("#form-tambah-edit").validate({
+                    submitHandler: function(form) {
+                        var actionType = $('#tombol-simpan').val();
+                        var simpan = $('#tombol-simpan').html('Sending..');
+                        $.ajax({
+                            data: $('#form-tambah-edit')
+                                .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
+                            url: "{{ route(auth()->user()->role.'_workordercreate') }}", //url simpan data
+                            type: "POST", //karena simpan kita pakai method POST
+                            dataType: 'json'
+                            , success: function(data) { //jika berhasil
+                                $('#form-tambah-edit').trigger("reset"); //form
+                                $('#tambah-edit-modal').modal('hide'); //modal hide
+                                $('#tombol-simpan').html('Simpan'); //tombol simpan
+                                var oTable = $('#data_table')
+                                    .dataTable(); //inialisasi datatable
+                                oTable.fnDraw(false);
+                            }
+                            , error: function(data) { //jika error tampilkan error pada console
+                                $('#tombol-simpan').html('Simpan');
+                            }
                         });
-
                     }
                 });
-                alertify.success('Data berhasil dihapus');
-            }, function() {
-                alertify.error('Cancel');
+            }
+            $('body').on('click', '.delete', function(id) {
+                var dataid = $(this).attr('data-id');
+                var url = "{{ route(auth()->user()->role.'_workorderdelete', ':dataid') }}";
+                urls = url.replace(':dataid', dataid);
+                alertify.confirm('Seluruh data yang berkaitan di paket ini akan ikut terhapus, apa anda yakin ?', function() {
+                    $.ajax({
+                        url: urls, //eksekusi ajax ke url ini
+                        type: 'delete'
+                        , success: function(data) { //jika sukses
+                            setTimeout(function() {
+                                var oTable = $('#data_table').dataTable();
+                                oTable.fnDraw(false); //reset datatable
+                                $('#tombol-hapus').text('Yakin');
+                            });
+                        }
+                    });
+                    alertify.success('Data berhasil dihapus');
+                }, function() {
+                    alertify.error('Cancel');
+                });
             });
-        });
         @endif
 
 

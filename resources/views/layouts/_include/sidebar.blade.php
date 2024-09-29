@@ -66,6 +66,12 @@
                         <span> Supplier </span>
                     </a>
                 </li>
+                {{-- <li>
+                    <a href="{{ route(auth()->user()->role.'_laporan') }}" class="waves-effect">
+                        <i class="mdi mdi-clipboard-outline"></i>
+                        <span> Laporan </span>
+                    </a>
+                </li> --}}
             @endif
 
 

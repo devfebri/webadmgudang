@@ -21,11 +21,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover table-bordered" id="data_table">
+                        <table class="table table-hover table-bordered" id="data_table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>No Instalasi</th>
+                                    <th>Nama Consumen</th>
                                     <th>Nama Paket</th>
                                     <th>Nomor Internet</th>
                                     <th>Harga</th>
@@ -93,7 +94,7 @@
                                  <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3"></textarea>
                              </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -173,6 +174,10 @@
                     , name: 'kode_instalasi'
                 }
                 , {
+                    data: 'nama_consumen'
+                    , name: 'nama_consumen'
+                }
+                , {
                     data: 'nama_paket'
                     , name: 'nama_paket'
                 }
@@ -188,7 +193,7 @@
                     data: 'layanan'
                     , name: 'layanan'
                 }
-                
+
                 , {
                     data: 'status'
                     , name: 'status'
@@ -232,7 +237,7 @@
             });
         }
 
-        
+
 
 
     });

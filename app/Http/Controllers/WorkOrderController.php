@@ -19,10 +19,11 @@ class WorkOrderController extends Controller
 
             $data = WorkOrder::orderBy('id', 'desc')->get();
         }else{
-            $teknisi=Teknisi::where('user_id', auth()->user()->id)->first()->id;
-            $data = WorkOrder::where('teknisi_id',$teknisi)->orderBy('id', 'desc')->get();
+            $teknisi1=Teknisi::where('user_id', auth()->user()->id)->first()->id;
+            $data = WorkOrder::where('teknisi_id',$teknisi1)->orderBy('id', 'desc')->get();
 
         }
+        // dd($request->all());
         $instalasi=DB::table('instalasi')
             ->join('consumen', 'consumen.id', '=', 'instalasi.consumen_id')
             ->select('instalasi.id','instalasi.kode_instalasi', 'consumen.nama')
@@ -48,7 +49,7 @@ class WorkOrderController extends Controller
                     }else if($in->status=='Proses'){
                         $button .= '<a href="' . route('teknisi_selesaiwo', ['id' => $f->id]) . '" class="tabledit-delete-button btn btn-sm btn-primary" style="float: none; margin: 5px;"><span >Selesai</span></a>';
                     }else{
-                        $button .= '<a href="#" class="tabledit-delete-button btn btn-sm btn-primary" disabled style="float: none; margin: 5px;"><span >Selesai</span></a>';
+                        $button .= '<a href="#" class="tabledit-delete-button btn btn-sm btn-info" disabled style="float: none; margin: 5px;"><span >Selesai</span></a>';
                     }
                     $button .= '</div>';
                     return $button;
@@ -66,11 +67,15 @@ class WorkOrderController extends Controller
                     // dd($teknisi);
                     return $consumen;
                 })->addColumn('item', function ($f) {
-                $item = Item::find($f->item_id)->nama;
-                // dd($teknisi);
-                return $item;
-            })
-                ->rawColumns(['action','nama_teknisi','nohp_teknisi','nohp_consumen','item'])
+                    $item = Item::find($f->item_id)->nama;
+                    // dd($teknisi);
+                    return $item;
+                })->addColumn('status', function ($f) {
+                    $item = Instalasi::find($f->instalasi_id)->status;
+                    // dd($item);
+                    return $item;
+                })
+                ->rawColumns(['action','nama_teknisi','nohp_teknisi','nohp_consumen','item','status'])
                 ->addIndexColumn()
                 ->make(true);
         }

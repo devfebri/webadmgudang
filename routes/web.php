@@ -6,9 +6,11 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\ConsumenController;
 use App\Http\Controllers\InstalasiController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WorkOrderController;
+use App\Models\WorkOrder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,11 +65,8 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
 
     Route::post('/pengajuan_instalasi/create', [InstalasiController::class, 'create'])->name('instalasicreate');
 
+    Route::get('/laporan',[LaporanController::class,'index'])->name('laporan');
 
-
-});
-
-Route::prefix('consumen')->middleware('auth', 'role:consumen')->name('consumen_')->group(function () {
 });
 Route::prefix('teknisi')->middleware('auth', 'role:teknisi')->name('teknisi_')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

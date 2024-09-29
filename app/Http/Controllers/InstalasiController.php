@@ -28,7 +28,11 @@ class InstalasiController extends Controller
                     $button .= '</div>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('nama_consumen',function($f){
+                    $buttons=Consumen::find($f->consumen_id)->nama;
+                    return $buttons;
+                })
+                ->rawColumns(['action','nama_consumen'])
                 ->addIndexColumn()
                 ->make(true);
         }
@@ -39,12 +43,17 @@ class InstalasiController extends Controller
     public function create(Request $request)
     {
         // dd($request->all());
-        $kodeBarang = Instalasi::orderBy('id','desc')->first()->kode_instalasi;
+        $jmlBarang=Instalasi::all()->count();
+        // dd($kodeBarang);
+        if($jmlBarang==0){
+            $kodeBarang=0;
+        }else{
+            $kodeBarang = Instalasi::orderBy('id','desc')->first()->kode_instalasi;
+        }
         $id = substr($kodeBarang, 0, 4);
         $newID = $id + 1;
         $newID = str_pad($newID,
-            4,
-            '0',
+            4,'0',
             STR_PAD_LEFT
         );
         $tahun=Carbon::now()->format('Y');

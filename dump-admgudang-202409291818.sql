@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: aplikasiadmgudang
+-- Host: localhost    Database: admgudang
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.27-MariaDB
 
@@ -35,7 +35,7 @@ CREATE TABLE `consumen` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `consumen` (
 
 LOCK TABLES `consumen` WRITE;
 /*!40000 ALTER TABLE `consumen` DISABLE KEYS */;
-INSERT INTO `consumen` VALUES (8,10,'Febri','1505012002000003','085266002649','Laki-Laki','2024-09-16','Jambi','dawawd','2024-09-01 03:59:45','2024-08-31 20:59:45');
+INSERT INTO `consumen` VALUES (10,16,'Budi','12344','085266915454','Laki-Laki','2024-09-16','jambi','Test','2024-09-29 08:12:46','2024-09-29 01:12:46');
 /*!40000 ALTER TABLE `consumen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `instalasi` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `instalasi` (
 
 LOCK TABLES `instalasi` WRITE;
 /*!40000 ALTER TABLE `instalasi` DISABLE KEYS */;
-INSERT INTO `instalasi` VALUES (3,'0001/PSB/TLKM/2024',NULL,10,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'pasang baru','Waiting','2024-09-01 08:56:16','2024-09-01 01:56:16'),(4,'0002/PSB/TLKM/2024',NULL,10,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'pasang baru','Waiting','2024-09-01 08:56:16','2024-09-01 01:56:16'),(5,'0003/PSB/TLKM/2024',NULL,8,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'Pasang Baru','Waiting','2024-09-01 11:08:19','2024-09-01 04:08:19'),(6,'0004/UP/TLKM/2024',NULL,8,NULL,'PAKET HEMAT INTERNET + TELPON','250000','dawdawdaw',NULL,'21312312312','Up Layanan','Waiting','2024-09-01 11:09:30','2024-09-01 04:09:30');
+INSERT INTO `instalasi` VALUES (9,'0002/PSB/TLKM/2024',NULL,10,NULL,'PAKET HEMAT INTERNET + TELPON','250000',NULL,NULL,NULL,'Pasang Baru','Selesai','2024-09-29 08:22:08','2024-09-29 01:27:44'),(10,'0003/UP/TLKM/2024',NULL,10,NULL,'PAKET HEMAT INTERNET + TELPON','250000','dawdwadaw',NULL,'2121312','Up Layanan','Proses','2024-09-29 08:22:28','2024-09-29 04:13:20');
 /*!40000 ALTER TABLE `instalasi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,13 +126,14 @@ CREATE TABLE `item` (
   `nama` varchar(100) DEFAULT NULL,
   `serial_number` varchar(255) NOT NULL,
   `type` varchar(100) DEFAULT NULL,
+  `stok` int(11) DEFAULT NULL,
   `jenis` varchar(100) DEFAULT NULL,
   `owner` varchar(100) DEFAULT NULL,
   `status` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +142,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (7,4,'BOLT','12321312','ONT_HUAWEI_HG8145V5','STB','HUAWAI','Instal','2024-09-01 11:50:11','2024-09-01 04:50:11');
+INSERT INTO `item` VALUES (9,7,'Item 1','3213','ONT_HUAWEI_HG8145V5',44,'ONT','dwa','Instal','2024-09-29 08:24:22','2024-09-29 01:24:22');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +188,7 @@ CREATE TABLE `paket` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +197,7 @@ CREATE TABLE `paket` (
 
 LOCK TABLES `paket` WRITE;
 /*!40000 ALTER TABLE `paket` DISABLE KEYS */;
-INSERT INTO `paket` VALUES (2,'PAKET HEMAT INTERNET + TELPON','30 mbps','-','Kesemua Telkomsem','250000','2024-09-01 06:55:00','2024-08-31 23:55:00'),(3,'PAKET FAST INTERNET','100 Mbps','100+ chanel','1000 menit','500000','2024-09-01 06:58:08','2024-08-31 23:58:08');
+INSERT INTO `paket` VALUES (2,'PAKET HEMAT INTERNET + TELPON','30 mbps','-','Kesemua Telkomsem','250000','2024-09-01 06:55:00','2024-08-31 23:55:00'),(3,'PAKET FAST INTERNET','100 Mbps','100+ chanel','1000 menit','500000','2024-09-01 06:58:08','2024-08-31 23:58:08'),(4,'tets','12',NULL,NULL,'245000','2024-09-29 01:33:46','2024-09-28 18:33:46');
 /*!40000 ALTER TABLE `paket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +243,7 @@ CREATE TABLE `supplier` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +252,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (4,'15051212','adaw','dwadaw','dwadaw',22,'Doc1.docx-1725155749.docx','2024-09-01 01:55:49','2024-08-31 18:55:49');
+INSERT INTO `supplier` VALUES (7,'2323333','Bran','Febri','dwawad',2,'FIX (6).pdf-1727598220.pdf','2024-09-29 08:23:41','2024-09-29 01:23:41');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +276,7 @@ CREATE TABLE `teknisi` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +285,7 @@ CREATE TABLE `teknisi` (
 
 LOCK TABLES `teknisi` WRITE;
 /*!40000 ALTER TABLE `teknisi` DISABLE KEYS */;
-INSERT INTO `teknisi` VALUES (8,8,'dwaadw','1505012002000003','08521711111','Laki-Laki','2024-09-17','Jambi','dwadaw','2024-09-01 03:51:31','2024-08-31 20:51:31'),(9,9,'dwadwa','21312','085217111113','Laki-Laki','2024-09-18','dwadwa','dwadwa','2024-09-01 03:51:48','2024-08-31 20:51:48'),(10,11,'Riki','58585858','085266911422','Laki-Laki','2024-09-18','Jambi','dawdawdwa','2024-09-01 09:32:37','2024-09-01 02:32:37');
+INSERT INTO `teknisi` VALUES (13,15,'Febri','1505012002000003','085266911477','Laki-Laki','2024-09-18','jambi','Febri','2024-09-29 08:11:31','2024-09-29 01:11:31');
 /*!40000 ALTER TABLE `teknisi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +310,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,7 +319,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin','admin@admin.com',NULL,'$2y$10$V2zDWC67Cj9eNPSH13Rl8uIMs7XCbNSHz5ozsZm2uPnODiVIWHI7.','admin',NULL,NULL,'2024-07-21 07:37:43','2024-07-21 07:37:43'),(8,'08521711111','dwaadw',NULL,NULL,'$2y$10$tZUcYatBSkSHlciK9Oj0hu/9qlRvj6l8GJHmvZAV72W8CikCZ9mYC','teknisi',NULL,NULL,'2024-08-31 20:51:31','2024-08-31 20:51:31'),(9,'085217111113','dwadwa',NULL,NULL,'$2y$10$2X9qSBo.pVmW2b64JQXVU./sYvEpV8HriAxaNF/nxF9mzkAqby.Iy','teknisi',NULL,NULL,'2024-08-31 20:51:48','2024-08-31 20:51:48'),(10,'085266002649','Febri',NULL,NULL,'$2y$10$zo5.MHi8GTTUyM.vQBuZvujFgv8VRUgdyrhghsh9y./SOHr08vR6m','consumen',NULL,NULL,'2024-08-31 20:59:45','2024-08-31 20:59:45'),(11,'085266911422','Riki',NULL,NULL,'$2y$10$iZiHXKAiil9mIMJPXyQMtuAt6MPZb0h5.OqckbDjNKKRkP/T6frTW','teknisi',NULL,NULL,'2024-09-01 02:32:37','2024-09-01 02:32:37');
+INSERT INTO `users` VALUES (1,'admin','admin','admin@admin.com',NULL,'$2y$10$V2zDWC67Cj9eNPSH13Rl8uIMs7XCbNSHz5ozsZm2uPnODiVIWHI7.','admin',NULL,NULL,'2024-07-21 07:37:43','2024-07-21 07:37:43'),(15,'085266911477','Febri',NULL,NULL,'$2y$10$abN1t3xIUmaD58WD.No8NOVa8ZxQQEcxKO054/cMMOrqoGAK/CJgO','teknisi',NULL,NULL,'2024-09-29 01:11:31','2024-09-29 01:11:31'),(16,'085266915454','Budi',NULL,NULL,'$2y$10$sGVA4KXVwC6.fUQTysajkOT0mcvOjoVrdANz06M0FY0Zq2aExgKZ2','consumen',NULL,NULL,'2024-09-29 01:12:46','2024-09-29 01:12:46');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +341,7 @@ CREATE TABLE `work_order` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,12 +350,12 @@ CREATE TABLE `work_order` (
 
 LOCK TABLES `work_order` WRITE;
 /*!40000 ALTER TABLE `work_order` DISABLE KEYS */;
-INSERT INTO `work_order` VALUES (3,5,9,7,'0001/WO/TLKM/2024','Pasang Baru','dwadwa','2024-09-01 11:52:43','2024-09-01 04:52:43'),(4,5,8,7,'0002/WO/TLKM/2024','Pasang Baru','dwadaw','2024-09-01 11:54:12','2024-09-01 04:54:12');
+INSERT INTO `work_order` VALUES (7,9,13,9,'0002/WO/TLKM/2024','Pasang Baru','wdaadaw','2024-09-29 08:24:40','2024-09-29 01:24:40'),(8,9,13,9,'0003/WO/TLKM/2024','Pasang Baru','saadsa','2024-09-29 08:41:19','2024-09-29 01:41:19'),(9,10,13,9,'0004/WO/TLKM/2024','Up Layanan','sada','2024-09-29 11:11:46','2024-09-29 04:11:46'),(10,10,13,9,'0005/WO/TLKM/2024','Up Layanan','dsds','2024-09-29 11:12:22','2024-09-29 04:12:22');
 /*!40000 ALTER TABLE `work_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'aplikasiadmgudang'
+-- Dumping routines for database 'admgudang'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -366,4 +367,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-01 19:19:00
+-- Dump completed on 2024-09-29 18:18:55

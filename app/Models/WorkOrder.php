@@ -10,5 +10,5 @@ class WorkOrder extends Model
     use HasFactory;
 
     protected $table='work_order';
-    protected $fillable=['nomor_wo'];
+    protected $fillable=['nomor_wo','user_id','nama'];
 }

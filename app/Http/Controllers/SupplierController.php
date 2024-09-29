@@ -58,8 +58,8 @@ class SupplierController extends Controller
         if (Storage::exists($image)) {
             Storage::delete($image);
             $item=Item::where('supplier_id',$id)->delete();
-            $supplier->delete();
         }
+        $supplier->delete();
         return response()->json($supplier);
     }
 }

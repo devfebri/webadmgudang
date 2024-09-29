@@ -172,6 +172,7 @@
             var table = $('#data_table').DataTable({
                 processing: true,
                 serverSide: true,
+                scrollX: true,
                 ajax: "{{ route(auth()->user()->role.'_item') }}",
                 columns: [{
                         data: null,

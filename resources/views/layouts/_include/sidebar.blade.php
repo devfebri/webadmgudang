@@ -32,6 +32,7 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ route(auth()->user()->role.'_teknisi') }}">Teknisi</a></li>
                         <li><a href="{{ route(auth()->user()->role.'_consumen') }}">Consumen</a></li>
+                        <li><a href="{{ route(auth()->user()->role.'_pimpinan') }}">Pimpinan</a></li>
                     </ul>
                 </li>
                 <li>
@@ -75,6 +76,43 @@
                         <span> Laporan </span>
                     </a>
                 </li> --}}
+            @endif
+            @if(auth()->user()->role=='pimpinan')
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_instalasi') }}" class="waves-effect">
+                        <i class="mdi mdi-access-point-network"></i>
+                        <span> Pengajuan Instalasi </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_workorder') }}" class="waves-effect">
+                        <i class="mdi mdi-truck"></i>
+                        <span> Work Order </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_item') }}" class="waves-effect">
+                        <i class="mdi mdi-server"></i>
+                        <span> Item </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route(auth()->user()->role.'_paket') }}" class="waves-effect">
+                        <i class="mdi mdi-tablet-android"></i>
+                        <span> Paket </span>
+                    </a>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account"></i> <span> Supplier </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route(auth()->user()->role.'_supplier') }}">Barang Masuk</a></li>
+                        <li><a href="{{ route(auth()->user()->role.'_barangkeluar') }}">Barang Keluar</a></li>
+                    </ul>
+                </li>
+                
             @endif
 
 

@@ -15,7 +15,7 @@ class WorkOrderController extends Controller
 {
     public function index(Request $request)
     {
-        if(auth()->user()->role=='admin'){
+        if(auth()->user()->role=='admin'|| auth()->user()->role == 'pimpinan'){
 
             $data = WorkOrder::orderBy('id', 'desc')->get();
         }else{

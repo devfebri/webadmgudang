@@ -6,6 +6,9 @@ use App\Models\Consumen;
 use App\Models\Instalasi;
 use App\Models\Paket;
 use Carbon\Carbon;
+use Dompdf\Adapter\PDFLib;
+use Dompdf\Dompdf;
+use PDF;
 use Illuminate\Http\Request;
 
 class InstalasiController extends Controller
@@ -106,6 +109,26 @@ class InstalasiController extends Controller
 
 
         return response()->json($data);
+    }
+
+    public function laporan()
+    {
+        return view('instalasi.laporan');
+    }
+
+    public function download(Request $request)
+    {
+        // $data = Instalasi::all();
+        $data = [
+            'instalasi' => Instalasi::whereBetween('created_at', [$request->start_date, $request->end_date])->get(),
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+        ];
+        // dd($data['instalasi']->get());
+        $pdf = PDF::loadView('instalasi.pdf', $data);
+
+
+        return $pdf->stream('document.pdf');
     }
 
 

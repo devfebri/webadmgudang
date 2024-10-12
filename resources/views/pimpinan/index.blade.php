@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Teknisi <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    <h4 class="page-title">Pimpinan <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
 
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover table-bordered" style="width: 100%" id="data_table">
+                        <table class="table table-hover table-bordered" id="data_table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -83,15 +83,20 @@
                                 <label>Tempat Lahir</label>
                                 <input type="text" name="tmpt_lahir" id="tmpt_lahir" class="form-control" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
                                 <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" required>
                             </div>
+
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <textarea name="alamat" id="alamat"  rows="3" class="form-control" required></textarea>
+                                <textarea name="alamat" id="alamat" rows="3" class="form-control" required></textarea>
                             </div>
+
                         </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -127,7 +132,7 @@
         var table = $('#data_table').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ route(auth()->user()->role.'_teknisi') }}"
+            , ajax: "{{ route(auth()->user()->role.'_pimpinan') }}"
             , columns: [{
                     data: null
                     , sortable: false
@@ -169,6 +174,8 @@
             $('#tambah-edit-modal').modal('show');
 
             $('#modal-judul').html('Tambah Data');
+            $('#no_hp').attr('disabled',false);
+
 
         });
         if ($("#form-tambah-edit").length > 0) {
@@ -179,7 +186,7 @@
                     $.ajax({
                         data: $('#form-tambah-edit')
                             .serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
-                        url: "{{ route(auth()->user()->role.'_teknisicreate') }}", //url simpan data
+                        url: "{{ route(auth()->user()->role.'_pimpinancreate') }}", //url simpan data
                         type: "POST", //karena simpan kita pakai method POST
                         dataType: 'json'
                         , success: function(data) { //jika berhasil
@@ -200,10 +207,10 @@
 
         $('body').on('click', '.delete', function(id) {
             var dataid = $(this).attr('data-id');
-            var url = "{{ route(auth()->user()->role.'_teknisidelete', ':dataid') }}";
+            var url = "{{ route(auth()->user()->role.'_pimpinandelete', ':dataid') }}";
 
             urls = url.replace(':dataid', dataid);
-            alertify.confirm('Seluruh data yang berkaitan di teknisi ini akan ikut terhapus, apa anda yakin ?', function() {
+            alertify.confirm('Seluruh data yang berkaitan di pimpinan ini akan ikut terhapus, apa anda yakin ?', function() {
                 $.ajax({
                     url: urls, //eksekusi ajax ke url ini
                     type: 'delete'
@@ -223,21 +230,21 @@
         });
         $('body').on('click', '.edit-post', function () {
              var data_id = $(this).data('id');
-             var url = "{{ route(auth()->user()->role.'_teknisiedit',':data_id') }}";
+             var url = "{{ route(auth()->user()->role.'_pimpinanedit',':data_id') }}";
              url = url.replace(':data_id', data_id);
             $.get(url, function (data) {
-                $('#modal-judul').html("Edit Teknisi");
+                $('#modal-judul').html("Edit pimpinan");
                 $('#tombol-simpan').val("edit-post");
                 $('#tambah-edit-modal').modal('show');
-                $('#id').val(data.consumen.id);
-                $('#nama').val(data.consumen.nama);
-                $('#nik').val(data.consumen.nik);
-                $('#no_hp').val(data.consumen.no_hp);
+                $('#id').val(data.pimpinan.id);
+                $('#nama').val(data.pimpinan.nama);
+                $('#nik').val(data.pimpinan.nik);
+                $('#no_hp').val(data.pimpinan.no_hp);
                 $('#no_hp').attr('disabled',true);
-                $('#jk').val(data.consumen.jk).change();
-                $('#tmpt_lahir').val(data.consumen.tmpt_lahir);
+                $('#jk').val(data.pimpinan.jk).change();
+                $('#tmpt_lahir').val(data.pimpinan.tmpt_lahir);
                 $('#tgl_lahir').val(data.tgl_lahir);
-                $('#alamat').val(data.consumen.alamat);
+                $('#alamat').val(data.pimpinan.alamat);
             })
         });
 

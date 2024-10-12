@@ -9,5 +9,6 @@ class Teknisi extends Model
 {
     use HasFactory;
     protected $table='teknisi';
+    protected $fillable=['nama','no_hp','jk','tgl_lahir','tmpt_lahir','alamat'];
     protected $dates=['tgl_lahir'];
 }

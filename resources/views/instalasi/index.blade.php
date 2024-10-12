@@ -12,7 +12,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Pengajuan Instalasi <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    <h4 class="page-title">Pengajuan Instalasi
+                        @if(auth()->user()->role=='admin')
+                        <button id="btntambah" class="btn btn-primary float-right ml-2">Tambah Data</button>
+                        @endif
+                        <a href="{{ route('admin_instalasilaporan') }}" class="btn btn-primary float-right">Laporan</a>
+
+
+                    </h4>
 
                 </div>
             </div>
@@ -94,7 +101,6 @@
                                  <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3"></textarea>
                              </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -261,6 +267,8 @@
                 alertify.error('Cancel');
             });
         })
+
+
 
 
 

@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover table-bordered" id="data_table">
+                        <table class="table table-hover table-bordered" id="data_table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -71,7 +71,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
-                                <select class="form-control " name="jk" name="jk" required>
+                                <select class="form-control " name="jk" id="jk" required>
                                     <option value="">-pilih-</option>
                                     <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
@@ -174,6 +174,8 @@
             $('#tambah-edit-modal').modal('show');
 
             $('#modal-judul').html('Tambah Data');
+            $('#no_hp').attr('disabled',false);
+
 
         });
         if ($("#form-tambah-edit").length > 0) {
@@ -225,6 +227,25 @@
             }, function() {
                 alertify.error('Cancel');
             });
+        });
+        $('body').on('click', '.edit-post', function () {
+             var data_id = $(this).data('id');
+             var url = "{{ route(auth()->user()->role.'_consumenedit',':data_id') }}";
+             url = url.replace(':data_id', data_id);
+            $.get(url, function (data) {
+                $('#modal-judul').html("Edit Consumen");
+                $('#tombol-simpan').val("edit-post");
+                $('#tambah-edit-modal').modal('show');
+                $('#id').val(data.consumen.id);
+                $('#nama').val(data.consumen.nama);
+                $('#nik').val(data.consumen.nik);
+                $('#no_hp').val(data.consumen.no_hp);
+                $('#no_hp').attr('disabled',true);
+                $('#jk').val(data.consumen.jk).change();
+                $('#tmpt_lahir').val(data.consumen.tmpt_lahir);
+                $('#tgl_lahir').val(data.tgl_lahir);
+                $('#alamat').val(data.consumen.alamat);
+            })
         });
 
 

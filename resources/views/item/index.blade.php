@@ -12,7 +12,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Item <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    <h4 class="page-title">Item
+                        @if(auth()->user()->role=='admin')
+                        <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button>
+                        @endif
+                    </h4>
 
                 </div>
             </div>
@@ -33,7 +37,9 @@
                                     <th>Suplier</th>
                                     <th>Stok</th>
                                     <th>Status</th>
+                                    @if(auth()->user()->role=='admin')
                                     <th>Aksi</th>
+                                    @endif
                                 </tr>
                             </thead>
                         </table>
@@ -59,17 +65,17 @@
                     <input type="hidden" name="id" id="id">
                     <div class="row">
                         <div class="col-sm-12 col-lg-6">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Serial Number</label>
                                 <input type="text" name="serial_number" id="serial_number" class="form-control" required>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label>Nama Item</label>
                                 <input type="text" name="nama" id="nama" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Type</label>
-                                <select class="form-control select2" name="type" required>
+                                <select class="form-control select2" name="type" id="type" required>
                                     <option value="">-pilih-</option>
                                     <option value="ONT_HUAWEI_HG8145V5">ONT_HUAWEI_HG8145V5</option>
                                     <option value="ONT_FIBERHOME_HG6245N">ONT_FIBERHOME_HG6245N</option>
@@ -100,7 +106,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Jenis</label>
-                                <select class="form-control" name="jenis" required>
+                                <select class="form-control" name="jenis" id="jenis" required>
                                     <option value="">-pilih-</option>
                                     <option value="ONT">ONT</option>
                                     <option value="STB">STB</option>
@@ -119,7 +125,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Supplier</label>
-                                <select class="form-control select2" name="supplier_id" required>
+                                <select class="form-control select2" name="supplier_id" id="supplier_id" style="width: 100%" required>
                                     <option value="">-pilih-</option>
                                     @foreach ($supplier as $row)
                                     <option value="{{ $row->id }}">{{ $row->nama_supplier }} - {{ $row->no_surat }}</option>
@@ -128,7 +134,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
-                                <select class="form-control" name="status" required>
+                                <select class="form-control status" name="status"  style="width: 100%" required>
                                     <option value="">-pilih-</option>
                                     <option value="Instal">Instal</option>
                                     <option value="Intech">Intech</option>
@@ -181,10 +187,6 @@
                             return meta.row + meta.settings._iDisplayStart + 1
                         },
                     },
-                    // {
-                    //     data: 'serial_number',
-                    //     name: 'serial_number'
-                    // },
                     {
                         data: 'nama',
                         name: 'nama'
@@ -212,11 +214,13 @@
                     {
                         data: 'status',
                         name: 'status'
-                    },
-                    {
+                    }
+                    @if(auth()->user()->role=='admin')
+                    ,{
                         data: 'action',
                         name: 'action'
                     }
+                    @endif
                 ]
             });
             $('#btntambah').on('click', function() {
@@ -274,6 +278,25 @@
                 }, function() {
                     alertify.error('Cancel');
                 });
+            });
+
+            $('body').on('click', '.edit-post', function () {
+                var data_id = $(this).data('id');
+                var url = "{{ route(auth()->user()->role.'_itemedit',':data_id') }}";
+                url = url.replace(':data_id', data_id);
+                $.get(url, function (data) {
+                    $('#modal-judul').html("Edit Item");
+                    $('#tombol-simpan').val("edit-post");
+                    $('#tambah-edit-modal').modal('show');
+                    $('#id').val(data.id);
+                    $('#nama').val(data.nama);
+                    $('#type').val(data.type).change();
+                    $('#jenis').val(data.jenis).change();
+                    $('#stok').val(data.stok);
+                    $('#owner').val(data.owner);
+                    $('#supplier_id').val(data.supplier_id).change();
+                    $('.status').val(data.status).change();
+                })
             });
 
 

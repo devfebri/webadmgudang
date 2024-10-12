@@ -12,7 +12,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Paket <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button></h4>
+                    <h4 class="page-title">Paket
+                        @if(auth()->user()->role=='admin')
+                        <button id="btntambah" class="btn btn-primary float-right">Tambah Data</button>
+                        @endif
+                    </h4>
 
                 </div>
             </div>
@@ -30,8 +34,9 @@
                                     <th>TV</th>
                                     <th>Telpon</th>
                                     <th>Harga /month</th>
-
+                                    @if(auth()->user()->role=='admin')
                                     <th>Aksi</th>
+                                    @endif
                                 </tr>
                             </thead>
                         </table>
@@ -144,10 +149,12 @@
                     data: 'harga'
                     , name: 'harga'
                 }
+                @if(auth()->user()->role=='admin')
                 , {
                     data: 'action'
                     , name: 'action'
                 }
+                @endif
             ]
         });
         $('#btntambah').on('click', function() {

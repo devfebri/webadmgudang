@@ -33,6 +33,7 @@
                                     <th>Nama Supplier</th>
                                     <th>Nama Penerima</th>
                                     <th>Nama Pengirim</th>
+                                    <th>Item</th>
                                     <th>Jumlah Barang</th>
                                     <th>File Surat</th>
                                      @if(auth()->user()->role=='admin')
@@ -83,6 +84,16 @@
                         </div>
                         <div class="col-sm-12 col-lg-6">
                             <div class="form-group">
+                                <label>Item</label>
+                                <select class="form-control select2" name="item_id"  required>
+                                    <option value="">-pilih-</option>
+                                    @foreach ($item as $row1)
+                                    <option value="{{ $row1->id }}">{{ $row1->nama }} - {{ $row1->type }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Jumlah Barang</label>
                                 <input type="number" name="jml_barang" id="jml_barang" class="form-control" required>
                             </div>
@@ -129,7 +140,8 @@
         var table = $('#data_table').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ route(auth()->user()->role.'_barangkeluar') }}"
+            , ajax: "{{ route(auth()->user()->role.'_barangkeluar') }}",
+            scrollX: true
 
             , columns: [{
                     data: null
@@ -153,6 +165,10 @@
                 , {
                     data: 'nama_pengirim'
                     , name: 'nama_pengirim'
+                }
+                , {
+                    data: 'item'
+                    , name: 'item'
                 }
                 , {
                     data: 'jml_barang'

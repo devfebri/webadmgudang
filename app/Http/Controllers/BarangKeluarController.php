@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BarangKeluar;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class BarangKeluarController extends Controller
@@ -11,6 +12,7 @@ class BarangKeluarController extends Controller
     {
         $data = BarangKeluar::orderBy('id', 'desc')->get();
         // dd($data);
+        $item=Item::all();
         if ($request->ajax()) {
             return datatables()->of($data)
                 ->addColumn('action', function ($f) {
@@ -20,11 +22,16 @@ class BarangKeluarController extends Controller
                     $button .= '</div>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('item', function ($f) {
+                    $item=Item::find($f->item_id);
+                    $button= '<span class="badge badge-pill badge-primary">'.$item->nama.' - '.$item->type.'</span>';
+                    return $button;
+                })
+                ->rawColumns(['action','item'])
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('supplier.barangkeluar', compact('data'));
+        return view('supplier.barangkeluar', compact('data','item'));
     }
     public function create(Request $request)
     {
@@ -41,7 +48,12 @@ class BarangKeluarController extends Controller
             $file->move(public_path() . '/storage/barang_keluar/' . auth()->user()->username, $filename);
             // dd('melahirkani');
         }
+        $data->item_id                          = $request->item_id;
         $data->file_surat                       = $filename;
+        $stokbaru=
+        $item=Item::find($request->item_id);
+        $stokbaru=$item->stok-$request->jml_barang;
+        $item->update(['stok' => $stokbaru]);
         $data->save();
 
         return response()->json($data);

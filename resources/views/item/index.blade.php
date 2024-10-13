@@ -34,7 +34,6 @@
                                     <th>Type</th>
                                     <th>Jenis</th>
                                     <th>Owner</th>
-                                    <th>Suplier</th>
                                     <th>Stok</th>
                                     <th>Status</th>
                                     @if(auth()->user()->role=='admin')
@@ -110,7 +109,6 @@
                                     <option value="">-pilih-</option>
                                     <option value="ONT">ONT</option>
                                     <option value="STB">STB</option>
-                                    <option value="STB">STB</option>
                                 </select>
                             </div>
                         </div>
@@ -122,15 +120,6 @@
                             <div class="form-group">
                                 <label>Owner</label>
                                 <input type="text" name="owner" id="owner" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Supplier</label>
-                                <select class="form-control select2" name="supplier_id" id="supplier_id" style="width: 100%" required>
-                                    <option value="">-pilih-</option>
-                                    @foreach ($supplier as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama_supplier }} - {{ $row->no_surat }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
@@ -202,10 +191,6 @@
                     {
                         data: 'owner',
                         name: 'owner'
-                    },
-                    {
-                        data: 'data_supplier',
-                        name: 'data_supplier'
                     },
                     {
                         data: 'stok',

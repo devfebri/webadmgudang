@@ -21,13 +21,7 @@ class ItemController extends Controller
                     $button .= '</div>';
                     return $button;
                 })
-                ->addColumn('data_supplier', function ($f) {
-                    $d=Supplier::find($f->supplier_id);
-                    // dd($d);
-                    $button = $d->nama_supplier.' - '.$d->no_surat;
-                    return $button;
-                })
-                ->rawColumns(['action', 'data_supplier'])
+                ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);
         }
@@ -44,7 +38,6 @@ class ItemController extends Controller
                 'jenis'=>$request->jenis,
                 'stok'=>$request->stok,
                 'owner'=>$request->owner,
-                'supplier_id'=>$request->supplier_id,
                 'status'=>$request->status
             ]);
         }else{
@@ -53,7 +46,6 @@ class ItemController extends Controller
             $data->type             = $request->type;
             $data->jenis            = $request->jenis;
             $data->owner            = $request->owner;
-            $data->supplier_id      = $request->supplier_id;
             $data->status           = $request->status;
             $data->stok             = $request->stok;
             $data->save();
@@ -67,7 +59,7 @@ class ItemController extends Controller
     {
         $item = Item::find($id);
         $wo=WorkOrder::where('item_id',$id)->delete();
-        
+
         $item->delete();
         return response()->json($item);
     }

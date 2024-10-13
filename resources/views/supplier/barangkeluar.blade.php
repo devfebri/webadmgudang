@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 <div class="page-content-wrapper">
     <div class="container-fluid">
         <div class="row">

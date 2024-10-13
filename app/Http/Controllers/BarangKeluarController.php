@@ -18,7 +18,7 @@ class BarangKeluarController extends Controller
                 ->addColumn('action', function ($f) {
                     $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">';
                     $button .= '<a href="' . asset('storage/barang_keluar/' . auth()->user()->username . '/' . $f->file_surat) . '" target="_blank" style="margin: 5px;" class="tabledit-edit-button btn btn-sm btn-info"><span class="ti-import"></span></a>';
-                    $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
+                    // $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
                     $button .= '</div>';
                     return $button;
                 })

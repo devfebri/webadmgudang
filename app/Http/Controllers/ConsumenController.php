@@ -34,6 +34,7 @@ class ConsumenController extends Controller
     }
     public function create(Request $request)
     {
+
         if($request->id){
             $data=Consumen::find($request->id);
             $user=User::find($data->user_id);

@@ -23,10 +23,13 @@ class InstalasiController extends Controller
                 ->addColumn('action', function ($f) {
                     // dd($f->status);
                     $button = '<div class="tabledit-toolbar btn-toolbar" style="text-align: center;">';
-                    // $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
+
+
                     if($f->status=='Waiting'){
+                        $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
                         $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
                     }else{
+                        $button .= '<button class="tabledit-edit-button btn btn-sm btn-warning edit-post" disabled data-id=' . $f->id . ' id="alertify-success" style="float: none; margin: 5px;"><span class="ti-pencil"></span></button>';
                         $button .= '<button class="tabledit-delete-button btn btn-sm btn-danger delete" disabled data-id=' . $f->id . ' style="float: none; margin: 5px;"><span class="ti-trash"></span></button>';
                     }
                     $button .= '</div>';
@@ -54,61 +57,101 @@ class InstalasiController extends Controller
 
     public function create(Request $request)
     {
-        // dd($request->all());
-        $jmlBarang=Instalasi::all()->count();
-        // dd($kodeBarang);
-        if($jmlBarang==0){
-            $kodeBarang=0;
+        if($request->id){
+            // dd($request->all());
+            $layanan = $request->layanan;
+            if ($layanan == 'Gangguan') {
+                $instalasi = Instalasi::find($request->id);
+                $instalasi->update([
+                    'layanan'           => $layanan,
+                    'nomor_internet'    => $request->no_internet,
+                    'deskripsi'         => $request->deskripsi,
+                    'consumen_id'       => $request->consumen_id
+                ]);
+            } else if ($layanan == 'Pasang Baru') {
+                $instalasi              = Instalasi::find($request->id);
+                $dpaket                 = Paket::find($request->paket);
+                $instalasi->update([
+                    'layanan'           => $layanan,
+                    'nomor_internet'    => $request->no_internet,
+                    'deskripsi'         => $request->deskripsi,
+                    'consumen_id'       => $request->consumen_id,
+                    'nama_paket'        => $dpaket->nama_paket,
+                    'harga_paket'       => $dpaket->harga,
+                ]);
+            } else if ($layanan == 'Up Layanan') {
+                $instalasi              = Instalasi::find($request->id);
+                $dpaket                 = Paket::find($request->paket);
+                $instalasi->update([
+                    'layanan'           => $layanan,
+                    'nomor_internet'    => $request->no_internet,
+                    'deskripsi'         => $request->deskripsi,
+                    'consumen_id'       => $request->consumen_id,
+                    'nama_paket'        => $dpaket->nama_paket,
+                    'harga_paket'       => $dpaket->harga,
+                ]);
+            }
+            return response()->json($instalasi);
         }else{
-            $kodeBarang = Instalasi::orderBy('id','desc')->first()->kode_instalasi;
+            $jmlBarang = Instalasi::all()->count();
+            // dd($kodeBarang);
+            if ($jmlBarang == 0) {
+                $kodeBarang = 0;
+            } else {
+                $kodeBarang = Instalasi::orderBy('id', 'desc')->first()->kode_instalasi;
+            }
+            $id = substr($kodeBarang, 0, 4);
+            $newID = $id + 1;
+            $newID = str_pad(
+                $newID,
+                4,
+                '0',
+                STR_PAD_LEFT
+            );
+            $tahun = Carbon::now()->format('Y');
+
+            $layanan = $request->layanan;
+            if ($layanan == 'Gangguan') {
+                $newKodeInstalasi = $newID . '/GN/TLKM/' . $tahun;
+                $data                    = new Instalasi();
+                $data->kode_instalasi = $newKodeInstalasi;
+                $data->layanan      = $layanan;
+                $data->nomor_internet  = $request->no_internet;
+                $data->deskripsi    = $request->deskripsi;
+                $data->consumen_id  = $request->consumen_id;
+                $data->status       = 'Waiting';
+                $data->save();
+            } else if ($layanan == 'Pasang Baru') {
+                $newKodeInstalasi = $newID . '/PSB/TLKM/' . $tahun;
+                $data               = new Instalasi();
+                $data->kode_instalasi = $newKodeInstalasi;
+                $data->layanan      = $layanan;
+                $dpaket             = Paket::find($request->paket);
+                $data->nama_paket   = $dpaket->nama_paket;
+                $data->harga_paket  = $dpaket->harga;
+                $data->consumen_id  = $request->consumen_id;
+                $data->status       = 'Waiting';
+                $data->save();
+            } else if ($layanan == 'Up Layanan') {
+                $newKodeInstalasi = $newID . '/UP/TLKM/' . $tahun;
+                $data               = new Instalasi();
+                $data->kode_instalasi = $newKodeInstalasi;
+                $data->layanan      = $layanan;
+                $dpaket             = Paket::find($request->paket);
+                $data->nama_paket   = $dpaket->nama_paket;
+                $data->harga_paket  = $dpaket->harga;
+                $data->nomor_internet  = $request->no_internet;
+                $data->deskripsi    = $request->deskripsi;
+                $data->consumen_id  = $request->consumen_id;
+                $data->status       = 'Waiting';
+                $data->save();
+            }
+            return response()->json($data);
         }
-        $id = substr($kodeBarang, 0, 4);
-        $newID = $id + 1;
-        $newID = str_pad($newID,
-            4,'0',
-            STR_PAD_LEFT
-        );
-        $tahun=Carbon::now()->format('Y');
-
-        $layanan=$request->layanan;
-        if($layanan== 'Gangguan'){
-            $newKodeInstalasi = $newID . '/GN/TLKM/' . $tahun;
-            $data                    = new Instalasi();
-            $data->kode_instalasi=$newKodeInstalasi;
-            $data->layanan      =$layanan;
-            $data->nomor_internet  =$request->no_internet;
-            $data->deskripsi    =$request->deskripsi;
-            $data->consumen_id  = $request->consumen_id;
-            $data->status       = 'Waiting';
-            $data->save();
-        }else if($layanan=='Pasang Baru'){
-            $newKodeInstalasi = $newID . '/PSB/TLKM/' . $tahun;
-            $data               = new Instalasi();
-            $data->kode_instalasi = $newKodeInstalasi;
-            $data->layanan      = $layanan;
-            $dpaket             =Paket::find($request->paket);
-            $data->nama_paket   =$dpaket->nama_paket;
-            $data->harga_paket  =$dpaket->harga;
-            $data->consumen_id  = $request->consumen_id;
-            $data->status       ='Waiting';
-            $data->save();
-        }else if($layanan=='Up Layanan'){
-            $newKodeInstalasi = $newID . '/UP/TLKM/' . $tahun;
-            $data               = new Instalasi();
-            $data->kode_instalasi = $newKodeInstalasi;
-            $data->layanan      = $layanan;
-            $dpaket             = Paket::find($request->paket);
-            $data->nama_paket   = $dpaket->nama_paket;
-            $data->harga_paket  = $dpaket->harga;
-            $data->nomor_internet  = $request->no_internet;
-            $data->deskripsi    = $request->deskripsi;
-            $data->consumen_id  = $request->consumen_id;
-            $data->status       = 'Waiting';
-            $data->save();
-        }
 
 
-        return response()->json($data);
+
+
     }
 
     public function laporan()
@@ -129,6 +172,15 @@ class InstalasiController extends Controller
 
 
         return $pdf->stream('document.pdf');
+    }
+
+    public function edit($id)
+    {
+        // dd($id);
+        $data = instalasi::find($id);
+        // dd($data['tgl_lahir']);
+        // $data=User::find($consumen->user_id);
+        return response()->json($data);
     }
 
 

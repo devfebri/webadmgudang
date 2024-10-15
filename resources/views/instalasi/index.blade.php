@@ -266,7 +266,26 @@
             }, function() {
                 alertify.error('Cancel');
             });
-        })
+        });
+        $('body').on('click', '.edit-post', function () {
+             var data_id = $(this).data('id');
+             var url = "{{ route(auth()->user()->role.'_instalasiedit',':data_id') }}";
+             url = url.replace(':data_id', data_id);
+            $.get(url, function (data) {
+                $('#modal-judul').html("Edit Instalasi");
+                $('#tombol-simpan').val("edit-post");
+                $('#tambah-edit-modal').modal('show');
+                $('#id').val(data.id);
+
+                $('#layanan').val(data.layanan).change();
+                $('#paket').val(data.paket).change();
+                $('#no_internet').val(data.no_internet);
+                $('#deskripsi').val(data.deskripsi);
+                $('#consumen_id').val(data.consumen_id).change();
+
+
+            })
+        });
 
 
 

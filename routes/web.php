@@ -78,6 +78,7 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin_')->group(
 
     Route::post('/pengajuan_instalasi/create', [InstalasiController::class, 'create'])->name('instalasicreate');
     Route::delete('/pengajuan_instalasi/{id}/delete', [InstalasiController::class, 'delete'])->name('instalasidelete');
+    Route::get('/pengajuan_instalasi/{id}/edit', [InstalasiController::class, 'edit'])->name('instalasiedit');
     Route::get('/pengajuan_instalasi/laporan', [InstalasiController::class, 'laporan'])->name('instalasilaporan');
     Route::post('/pengajuan_instalasi/download', [InstalasiController::class, 'download'])->name('instalasidownload');
 

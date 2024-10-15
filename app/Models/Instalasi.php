@@ -10,7 +10,7 @@ class Instalasi extends Model
 {
     use HasFactory;
     protected $table='instalasi';
-    protected $fillable=['status'];
+    protected $fillable=['status','kode_instalasi','teknisi_id','consumen_id','item_id','nama_paket','harga_paket','deskripsi','tgl_instalasi','nomor_internet','layanan'];
 
     public function consumen(): BelongsTo
     {
